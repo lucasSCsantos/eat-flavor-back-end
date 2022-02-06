@@ -4,7 +4,7 @@ import { Callback, MongoClient, MongoClientOptions } from "mongodb";
 import Sinon from "sinon";
 import getConnectionMock from "../mocks/getConnectionMock";
 
-describe('Testa o endpoint POST `login`', () => {
+describe('Testa o endpoint POST `register`', () => {
   let connectionMock: MongoClient;
   let mockedFunction: Sinon.SinonStub<[url: string, options: MongoClientOptions, callback: Callback<MongoClient>], void>;
 
@@ -20,15 +20,11 @@ describe('Testa o endpoint POST `login`', () => {
     await connectionMock.db('EatFlavor').collection('movies').drop();
     mockedFunction.restore();
   });
-
  
   describe('Quando é inserido com sucesso', () => {
     it('o usuário deve existir no banco de dados', async () => {
-      const user = await connectionMock
-        .db('EatFlavor')
-        .collection('users')
-        .findOne({ where: { email } });
-      expect(user).to.be.not.null;
+      const response = await Users.getByEmail(email);
+      expect(response).to.be.not.null;
     });
 
     it('retorna um objeto', async () => {
@@ -41,9 +37,13 @@ describe('Testa o endpoint POST `login`', () => {
       expect(response).to.have.property('password')
     });
 
-    it('a senha do usuário foi salva em hash md5', async () => {
-      const response = await Users.getByEmail(email);
-      expect(response?.password).to.be.match(/^[a-f0-9]{32}$/i)
+    it('deve existir um usuário com o email cadastrado!', async () => {
+      await User.create(register);
+      const userCreated = await connectionMock
+        .db('EatFlavor')
+        .collection('users')
+        .findOne({ email: register.email });
+      expect(userCreated).to.be.not.null;
     });
   });
 });
