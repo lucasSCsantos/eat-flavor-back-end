@@ -38,5 +38,5 @@ const create = async ({ name, description, price, type, category, url_image }: P
 export default {
   getById,
 	create,
-	getAll
+	getAll,
 };

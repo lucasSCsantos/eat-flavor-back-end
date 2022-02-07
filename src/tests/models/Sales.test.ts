@@ -214,7 +214,7 @@ describe('Testa se atualiza o status de uma venda', () => {
         .db('EatFlavor')
         .collection('sales')
         .findOne(new ObjectId(id));
-      await Sales.update(id, 'progress');
+      await Sales.update(id, 'sent');
       const newSale = await connectionMock
         .db('EatFlavor')
         .collection('sales')

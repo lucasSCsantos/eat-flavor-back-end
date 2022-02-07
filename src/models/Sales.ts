@@ -36,8 +36,23 @@ const create = async ({ user_id, address, total_price, sale_date, status, produc
 	return { _id: sale.insertedId, user_id, address, total_price, sale_date, status, products  };
 }
 
+const update = async (id: string, status: string) => {
+  await connection.connection()
+    .then((db) => db.collection('sales').updateOne(
+      { _id: new ObjectId(id) }, 
+      { $set: {
+          status,
+      } },
+    ));
+  return { 
+    _id: id, 
+    status,
+  };
+};
+
 export default {
   getById,
 	create,
-	getAll
+	getAll,
+	update
 };
