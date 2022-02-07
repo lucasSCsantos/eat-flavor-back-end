@@ -6,6 +6,53 @@ import getConnectionMock from "../mocks/getConnectionMock";
 
 const sandbox = createSandbox();
 
+const IMAGE_URL = `https://images.unsplash.com/
+photo-1541832676-9b763b0239ab?ixlib=rb-1.2.1&ix
+id=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8
+&auto=format&fit=crop&w=1020&q=80`;
+
+const saleProducts = [
+	{
+		name: 'Arroz de pato',
+		description: 'Um arroz sequinho, delicioso, recheado com pato e farinheira',
+		price: 10.99,
+		url_image: IMAGE_URL,
+		category: 'food',
+		type: 'Carne Branca',
+	},
+	{
+		name: 'Arroz',
+		description: 'Um arroz sequinho, delicioso, recheado com pato e farinheira',
+		price: 10.99,
+		url_image: IMAGE_URL,
+		category: 'food', //food, drink, dessert
+		type: 'Carne Branca',
+	},
+	{
+		name: 'Pato',
+		description: 'Um arroz sequinho, delicioso, recheado com pato e farinheira',
+		price: 10.99,
+		url_image: IMAGE_URL,
+		category: 'food', //food, drink, dessert
+		type: 'Carne Branca',
+	},
+]
+
+const sale = (status: string) => ({
+  user_id: '123456123456',
+  address: 'Rua maluca',
+  total_price: 30.0,
+  sale_date: new Date(),
+  status,
+  products: saleProducts,
+});
+
+const saleList = [
+  sale('pending'),
+  sale('preparing'),
+  sale('sent'),
+]
+
 describe('Testa o registro de vendas', () => {
   let connectionMock: MongoClient;
   let mockedFunction: Sinon.SinonStub<[url: string, options: MongoClientOptions, callback: Callback<MongoClient>], void>;
@@ -105,8 +152,8 @@ describe('Testa se lista todos os produtos', () => {
     connectionMock = await getConnectionMock.getConnection();
     mockedFunction = sandbox.stub(MongoClient, 'connect');
     mockedFunction.resolves(connectionMock);
-		for (let i in saleProducts) {
-			await Sales.create(saleProducts[i]);
+		for (let i in saleList) {
+			await Sales.create(saleList[i]);
 		}
   })
 
@@ -122,7 +169,7 @@ describe('Testa se lista todos os produtos', () => {
 	
 	it('o tamanho dessa array é igual a quantidade de produtos criados', async () => {
 		const { sales } = await Sales.getAll();
-		expect(sales).to.have.lengthOf(salesList.length);
+		expect(sales).to.have.lengthOf(saleList.length);
 	});
 
 	it('o produto deve existir no banco de dados', async () => {
