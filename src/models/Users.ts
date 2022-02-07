@@ -9,7 +9,6 @@ export type RegisterType = {
 const getByEmail = async (email: string) => {
 	const user = await connection.connection()
     .then((db) => db.collection('users').findOne({ email }));
-	console.log(user)
 
 	if (user) return { email, password: user.password };
 
