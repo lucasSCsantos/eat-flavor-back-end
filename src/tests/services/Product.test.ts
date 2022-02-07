@@ -1,7 +1,7 @@
 import { expect } from "chai";
 import { ObjectId } from "mongodb";
 import { createSandbox } from "sinon";
-import ProductsModel from '../../models/Products';
+import ProductsModel, { DbProductType } from '../../models/Products';
 import ProductsService from '../../services/Products';
 
 const sandbox = createSandbox();
@@ -94,9 +94,9 @@ describe('Lista um produto por Id', () => {
 	});
 
 	describe('quando id é inválido', () => {
-		it('retorna null se é vazio', async () => {
+		it('retorna um objeto com mensagem se é vazio', async () => {
 			const response = await ProductsService.getById('');
-			expect(response).to.be.null
+			expect(response).to.have.property('message');
 		});
 
 		it('retorna um objeto com mensagem se não é um ObjectId válido', async () => {
@@ -124,7 +124,8 @@ describe('Lista um produto por Id', () => {
 		it('retorna o produto de mesmo id', async () => {
 			const response = await ProductsService.getById('123456189756');
 			expect(response).to.have.property('_id');
-			expect(response?._id).to.be.equal(productsList[2]._id);
+			const { _id } = response as DbProductType;
+			expect(_id).to.be.equal(productsList[2]._id);
 		});
 	});
 });
@@ -140,13 +141,6 @@ describe('Cria um produto', () => {
 		sandbox.restore();
 	});
 
-	describe('quando as informações são inválidas', () => {
-		it('retorna null se forem vazias', async () => {
-			const response = await ProductsService.create(invalidProduct);
-			expect(response).to.have.property('message');
-		});
-	});
-
 	describe('quando é inserido com sucesso', () => {
     it('retorna um objeto', async () => {
       const response = await ProductsService.create(product);
@@ -157,6 +151,5 @@ describe('Cria um produto', () => {
       const response = await ProductsService.create(product);
       expect(response).to.have.a.property('_id');
     });
-
   });
 });
