@@ -26,7 +26,7 @@ const productsList = [
 		description: 'Um arroz sequinho, delicioso, recheado com pato e farinheira',
 		price: 10.99,
 		url_image: IMAGE_URL,
-		category: 'food', //food, drink, dessert
+		category: 'food',
 		type: 'Carne Branca',
 	},
 	{
