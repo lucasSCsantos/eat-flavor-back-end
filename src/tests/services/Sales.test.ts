@@ -179,14 +179,15 @@ describe('Atualiza o status de uma venda', () => {
 	describe('quando é inserido com sucesso', () => {
     it('retorna um objeto', async () => {
       const response = await SalesService.update('123456123957', 'sent');
-      expect(response).to.have.property('message');
+			expect(response).to.be.a('object');
     });
 
     it('tal objeto possui o mesmo id inserido', async () => {
 			const response = await SalesService.update('123456123957', 'sent');
       expect(response).to.have.a.property('_id');
 			const { _id } = response as { _id: ObjectId };
-			expect(_id).to.be.equal(new ObjectId('123456123957'));
+			console.log(_id.toString() === '123456123957')
+			expect(_id).to.be.equal(updatedSale._id);
     });
 
 		it('o status mudou de fato', async () => {
