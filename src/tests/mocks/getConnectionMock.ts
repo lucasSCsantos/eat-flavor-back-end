@@ -7,7 +7,7 @@ const getConnection = async () => {
   const URLMock = DBSERVER.getUri();
   console.log(URLMock);
   
-  return await MongoClient.connect(`${URLMock}`);
+  return await MongoClient.connect(URLMock);
 };
 
 export default { getConnection };
