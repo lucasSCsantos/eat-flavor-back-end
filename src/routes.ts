@@ -18,5 +18,6 @@ router.post('/products', validateAdmin, Products.create);
 
 router.post('/login', Users.login);
 router.post('/register', Users.register);
+router.post('/validate', Users.validateUser);
 
 export default router;
