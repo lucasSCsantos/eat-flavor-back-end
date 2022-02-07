@@ -18,10 +18,6 @@ const getAll = async () => {
 };
 
 const getById = async (id: string) => {
-	if (!ObjectId.isValid(id)) {
-    return false;
-}
-
   const sale = await connection.connection()
     .then((db) => db.collection('sales').findOne(new ObjectId(id)));
 

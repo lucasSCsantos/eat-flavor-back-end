@@ -20,16 +20,6 @@ const product = {
 	type: 'Carne Branca',
 }
 
-const invalidProduct = {
-	_id: '',
-	name: '',
-	description: '',
-	price: 0,
-	url_image: '',
-	category: '',
-	type: '',
-}
-
 const productsList = [
 	{
 		_id: new ObjectId('123456123456'),
