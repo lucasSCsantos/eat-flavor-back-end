@@ -15,7 +15,7 @@ const product = {
   name: 'Arroz de pato',
 	description: 'Um arroz sequinho, delicioso, recheado com pato e farinheira',
 	price: 10.99,
-	url_image: 'https://images.unsplash.com/photo-1541832676-9b763b0239ab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1020&q=80',
+	url_image: IMAGE_URL,
 	category: 'food', //food, drink, dessert
 	type: 'Carne Branca',
 }
@@ -114,7 +114,6 @@ describe('Testa se retorna um produto pelo id', () => {
     
     it('o objeto contem a propriedade id', async () => {
       const response = await Products.getById(id);
-			console.log(response)
       expect(response).to.have.property('_id')
     });
 

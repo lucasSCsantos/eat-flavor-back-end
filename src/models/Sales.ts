@@ -7,7 +7,7 @@ export type SaleType = {
   address: string,
   total_price: number,
   sale_date: Date,
-  status: string,
+  status:string,
   products: ProductType[],
 }
 
@@ -18,10 +18,6 @@ const getAll = async () => {
 };
 
 const getById = async (id: string) => {
-	if (!ObjectId.isValid(id)) {
-    return false;
-}
-
   const sale = await connection.connection()
     .then((db) => db.collection('sales').findOne(new ObjectId(id)));
 
@@ -45,7 +41,7 @@ const update = async (id: string, status: string) => {
       } },
     ));
   return { 
-    _id: id, 
+    _id: new ObjectId(id), 
     status,
   };
 };
