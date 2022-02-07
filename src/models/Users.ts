@@ -17,7 +17,7 @@ const getByEmail = async (email: string) => {
 
 const create = async ({ email, password, name }: RegisterType) => {
 	const user = await connection.connection()
-		.then((db) => db.collection('users').insertOne({ email, password, name }));
+		.then((db) => db.collection('users').insertOne({ email, password, name, role: 'client' }));
 	return { _id: user.insertedId, name, email };
 }
 

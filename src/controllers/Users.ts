@@ -19,16 +19,16 @@ const login = async (req: Request, res: Response) => {
 const register = async (req: Request, res: Response) => {
   const { email, password, name } = req.body;
   const token = jwtValidation.createToken(email);
-  const { code, message, user }: any = await Users.create({ email, password, name });
+  const { status, message, user }: any = await Users.create({ email, password, name });
 
-  if (!user) return res.status(code).json({ message });
+  if (!user) return res.status(status).json({ message });
 
   delete user.id;
   delete user.password;
 
   user.token = token;
 
-  res.status(code).json(user);
+  res.status(status).json(user);
 };
 
 export default {
