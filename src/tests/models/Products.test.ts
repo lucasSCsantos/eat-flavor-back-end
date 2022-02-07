@@ -114,7 +114,6 @@ describe('Testa se retorna um produto pelo id', () => {
     
     it('o objeto contem a propriedade id', async () => {
       const response = await Products.getById(id);
-			console.log(response)
       expect(response).to.have.property('_id')
     });
 

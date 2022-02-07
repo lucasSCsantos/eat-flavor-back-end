@@ -3,7 +3,7 @@ import crypto from 'crypto';
 import Users from '../models/Users';
 import { LoginType } from '@services/Users';
 
-const emailAndPasswordExists = ({ email, password }: LoginType) => {
+const checkEmailAndPassword = ({ email, password }: LoginType) => {
   if (!email || !password) {
     return {
       status: 400,
@@ -13,17 +13,17 @@ const emailAndPasswordExists = ({ email, password }: LoginType) => {
   return false;
 };
 
-const emailIsValid = (email: keyof LoginType | string) => {
+const checkEmail = (email: keyof LoginType | string) => {
   if (!emailRegex.test(email)) {
     return {
       status: 400,
-      message: 'Email is not valid',
+      message: 'Invalid Email',
     };
   }
   return false;
 };
 
-const passwordIsSmallerThanSix = (password: keyof LoginType | string) => {
+const checkPassword = (password: keyof LoginType | string) => {
   if (password.length < 6) {
     return {
       status: 400,
@@ -33,7 +33,7 @@ const passwordIsSmallerThanSix = (password: keyof LoginType | string) => {
   return false;
 };
 
-const userExists = async ({ email, password }: LoginType) => {
+const checkUser = async ({ email, password }: LoginType) => {
   const user = await Users.getByEmail(email);
   if (!user) {
     return {
@@ -61,10 +61,10 @@ const validatePassword = async ({ email, password }: LoginType) => {
   };
 
 export default async (email: string, password: string) => {
-  const a = emailAndPasswordExists({ email, password });
-  const b = emailIsValid(email);
-  const c = passwordIsSmallerThanSix(password);
-  const d = await userExists({ email, password });
+  const a = checkEmailAndPassword({ email, password });
+  const b = checkEmail(email);
+  const c = checkPassword(password);
+  const d = await checkUser({ email, password });
   const e = await validatePassword({ email, password });
   if (a) return a;
   if (b) return b;
