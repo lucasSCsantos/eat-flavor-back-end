@@ -3,7 +3,7 @@ import { expect } from "chai";
 import { Callback, MongoClient, MongoClientOptions, ObjectId } from "mongodb";
 import Sinon, { createSandbox } from "sinon";
 import getConnectionMock from "../mocks/getConnectionMock";
-import imageUrl from "src/utils/imageUrl";
+import imageUrl from "../../utils/imageUrl";
 
 const sandbox = createSandbox();
 

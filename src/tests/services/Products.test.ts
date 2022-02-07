@@ -1,7 +1,7 @@
 import { expect } from "chai";
 import { ObjectId } from "mongodb";
 import { createSandbox } from "sinon";
-import imageUrl from "src/utils/imageUrl";
+import imageUrl from "../../utils/imageUrl";
 import ProductsModel, { DbProductType } from '../../models/Products';
 import ProductsService from '../../services/Products';
 
@@ -109,8 +109,8 @@ describe('Lista um produto por Id', () => {
 
 		it('retorna o produto de mesmo id', async () => {
 			const response = await ProductsService.getById('123456189756');
-			expect(response).to.have.property('_id');
-			const { _id } = response as DbProductType;
+			expect(response.product).to.have.property('_id');
+			const { _id } = response.product as DbProductType;
 			expect(_id).to.be.equal(productsList[2]._id);
 		});
 	});
@@ -135,7 +135,7 @@ describe('Cria um produto', () => {
 
     it('tal objeto possui o "id" do novo produto inserido', async () => {
       const response = await ProductsService.create(product);
-      expect(response).to.have.a.property('_id');
+      expect(response.product).to.have.a.property('_id');
     });
   });
 });
