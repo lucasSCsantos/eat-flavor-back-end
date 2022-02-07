@@ -9,7 +9,6 @@ const login = async (req: Request, res: Response) => {
 
 	if (message) res.status(status).json({ message });
 
-  delete user.id;
   delete user.password;
 
   user.token = token;
