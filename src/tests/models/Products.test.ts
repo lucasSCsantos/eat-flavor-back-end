@@ -1,4 +1,4 @@
-import Users from "../../models/Users";
+import Products from "../../models/Products";
 import { expect } from "chai";
 import { Callback, MongoClient, MongoClientOptions, ObjectId } from "mongodb";
 import Sinon, { createSandbox } from "sinon";
@@ -6,11 +6,16 @@ import getConnectionMock from "../mocks/getConnectionMock";
 
 const sandbox = createSandbox();
 
+const IMAGE_URL = `https://images.unsplash.com/
+photo-1541832676-9b763b0239ab?ixlib=rb-1.2.1&ix
+id=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8
+&auto=format&fit=crop&w=1020&q=80`;
+
 const product = {
   name: 'Arroz de pato',
 	description: 'Um arroz sequinho, delicioso, recheado com pato e farinheira',
 	price: 10.99,
-	url_image: '',
+	url_image: 'https://images.unsplash.com/photo-1541832676-9b763b0239ab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1020&q=80',
 	category: 'food', //food, drink, dessert
 	type: 'Carne Branca',
 }
@@ -20,7 +25,7 @@ const productsList = [
 		name: 'Arroz de pato',
 		description: 'Um arroz sequinho, delicioso, recheado com pato e farinheira',
 		price: 10.99,
-		url_image: '',
+		url_image: IMAGE_URL,
 		category: 'food', //food, drink, dessert
 		type: 'Carne Branca',
 	},
@@ -28,7 +33,7 @@ const productsList = [
 		name: 'Arroz',
 		description: 'Um arroz sequinho, delicioso, recheado com pato e farinheira',
 		price: 10.99,
-		url_image: '',
+		url_image: IMAGE_URL,
 		category: 'food', //food, drink, dessert
 		type: 'Carne Branca',
 	},
@@ -36,10 +41,10 @@ const productsList = [
 		name: 'Pato',
 		description: 'Um arroz sequinho, delicioso, recheado com pato e farinheira',
 		price: 10.99,
-		url_image: '',
+		url_image: IMAGE_URL,
 		category: 'food', //food, drink, dessert
 		type: 'Carne Branca',
-	}
+	},
 ]
 
 describe('Testa o registro de produtos', () => {
@@ -74,7 +79,7 @@ describe('Testa o registro de produtos', () => {
       await Products.create(product);
       const productCreated = await connectionMock
         .db('EatFlavor')
-        .collection('users')
+        .collection('products')
         .findOne({ name: product.name });
       expect(productCreated).to.be.not.null;
     });
@@ -82,7 +87,7 @@ describe('Testa o registro de produtos', () => {
 });
 
 describe('Testa se retorna um produto pelo id', () => {
-  let id: ObjectId;
+  let id: string;
   let connectionMock: MongoClient;
   let mockedFunction: Sinon.SinonStub<[url: string, options: MongoClientOptions, callback: Callback<MongoClient>], void>;
   
@@ -92,7 +97,7 @@ describe('Testa se retorna um produto pelo id', () => {
     mockedFunction = sandbox.stub(MongoClient, 'connect');
     mockedFunction.resolves(connectionMock);
     const { _id } = await Products.create(product);
-		id = _id;
+		id = _id.toString();
   })
 
   after(async () => {
@@ -109,8 +114,9 @@ describe('Testa se retorna um produto pelo id', () => {
     
     it('o objeto contem a propriedade id, igual a enviada', async () => {
       const response = await Products.getById(id);
-      expect(response).to.have.property('id')
-			expect(response._id).to.be.equal(id)
+			console.log(response)
+      expect(response).to.have.property('_id')
+			// expect(response).to.be.equal(id)
     });
 
     it('o produto deve existir no banco de dados', async () => {
@@ -121,11 +127,11 @@ describe('Testa se retorna um produto pelo id', () => {
       expect(product).to.be.not.null;
     });
 
-    it('quando não existir retorna null', async () => {
+    it('se não existir retorna null', async () => {
       const product = await connectionMock
         .db('EatFlavor')
         .collection('products')
-        .findOne(new ObjectId(id));
+        .findOne(new ObjectId('123456123456'));
       expect(product).to.be.null;
     });
   });
@@ -153,12 +159,12 @@ describe('Testa se lista todos os produtos', () => {
 
 	it('retorna um array', async () => {
 		const response = await Products.getAll();
-		expect(response).to.be.a('array')
+		expect(response).to.be.a('object').that.have.property('products')
 	});
 	
 	it('o tamanho dessa array é igual a quantidade de produtos criados', async () => {
-		const response = await Products.getAll();
-		expect(response).to.have.length(productsList.length);
+		const { products } = await Products.getAll();
+		expect(products).to.have.lengthOf(productsList.length);
 	});
 
 	it('o produto deve existir no banco de dados', async () => {
