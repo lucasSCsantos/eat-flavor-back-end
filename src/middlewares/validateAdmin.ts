@@ -16,16 +16,13 @@ export default async (req: { [key: string]: any } , res: Response, next: NextFun
 
   try {
     const decoded = jwt.verify(token, key);
-		const { email } = decoded as { email: string }
-    const user = await Users.getByEmail(email);
-
-    if (!user) {
+		const { data } = decoded as { data: { email: string } }
+    
+    if (data.email !== 'admin@admin.com') {
       return res
         .status(401)
-        .json({ message: 'User dont exists' });
+        .json({ message: 'Permission denied' });
     }
-
-    req.data = user;
 
     next();
   } catch (err) {
