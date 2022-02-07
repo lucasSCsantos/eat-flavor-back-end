@@ -6,48 +6,7 @@ import getConnectionMock from "../mocks/getConnectionMock";
 
 const sandbox = createSandbox();
 
-const IMAGE_URL = `https://images.unsplash.com/
-photo-1541832676-9b763b0239ab?ixlib=rb-1.2.1&ix
-id=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8
-&auto=format&fit=crop&w=1020&q=80`;
-
-const product = {
-  name: 'Arroz de pato',
-	description: 'Um arroz sequinho, delicioso, recheado com pato e farinheira',
-	price: 10.99,
-	url_image: 'https://images.unsplash.com/photo-1541832676-9b763b0239ab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1020&q=80',
-	category: 'food', //food, drink, dessert
-	type: 'Carne Branca',
-}
-
-const productsList = [
-	{
-		name: 'Arroz de pato',
-		description: 'Um arroz sequinho, delicioso, recheado com pato e farinheira',
-		price: 10.99,
-		url_image: IMAGE_URL,
-		category: 'food',
-		type: 'Carne Branca',
-	},
-	{
-		name: 'Arroz',
-		description: 'Um arroz sequinho, delicioso, recheado com pato e farinheira',
-		price: 10.99,
-		url_image: IMAGE_URL,
-		category: 'food', //food, drink, dessert
-		type: 'Carne Branca',
-	},
-	{
-		name: 'Pato',
-		description: 'Um arroz sequinho, delicioso, recheado com pato e farinheira',
-		price: 10.99,
-		url_image: IMAGE_URL,
-		category: 'food', //food, drink, dessert
-		type: 'Carne Branca',
-	},
-]
-
-describe('Testa o registro de produtos', () => {
+describe('Testa o registro de vendas', () => {
   let connectionMock: MongoClient;
   let mockedFunction: Sinon.SinonStub<[url: string, options: MongoClientOptions, callback: Callback<MongoClient>], void>;
 
@@ -58,30 +17,30 @@ describe('Testa o registro de produtos', () => {
   })
 
   after(async () => {
-    await connectionMock.db('EatFlavor').collection('products').drop();
+    await connectionMock.db('EatFlavor').collection('sales').drop();
     sandbox.restore();
   });
  
   describe('quando é registrado com sucesso', () => {
     it('retorna um objeto', async () => {
-      const response = await Products.create(product);
+      const response = await Sales.create(sale);
 
       expect(response).to.be.a('object');
     });
 
-    it('tal objeto possui o "id" do novo produto inserido', async () => {
-      const response = await Products.create(product);
+    it('tal objeto possui o "id" da nova venda inserido', async () => {
+      const response = await Sales.create(sale);
 
       expect(response).to.have.a.property('_id');
     });
 
-    it('deve existir um produto cadastrado!', async () => {
-      await Products.create(product);
-      const productCreated = await connectionMock
+    it('deve existir uma venda cadastrada!', async () => {
+      const { _id } = await Sales.create(sale);
+      const saleCreated = await connectionMock
         .db('EatFlavor')
-        .collection('products')
-        .findOne({ name: product.name });
-      expect(productCreated).to.be.not.null;
+        .collection('sales')
+        .findOne(_id);
+      expect(saleCreated).to.be.not.null;
     });
   });
 });
@@ -96,42 +55,42 @@ describe('Testa se retorna um produto pelo id', () => {
     connectionMock = await getConnectionMock.getConnection();
     mockedFunction = sandbox.stub(MongoClient, 'connect');
     mockedFunction.resolves(connectionMock);
-    const { _id } = await Products.create(product);
+    const { _id } = await Sales.create(sale);
 		id = _id.toString();
   })
 
   after(async () => {
-    await connectionMock.db('EatFlavor').collection('products').drop();
+    await connectionMock.db('EatFlavor').collection('sales').drop();
     sandbox.restore();
   });
 
  
   describe('quando é inserido com sucesso', () => {
     it('retorna um objeto', async () => {
-      const response = await Products.getById(id);
+      const response = await Sales.getById(id);
       expect(response).to.be.a('object')
     });
     
     it('o objeto contem a propriedade id', async () => {
-      const response = await Products.getById(id);
+      const response = await Sales.getById(id);
 			console.log(response)
       expect(response).to.have.property('_id')
     });
 
     it('o produto deve existir no banco de dados', async () => {
-      const product = await connectionMock
+      const sale = await connectionMock
         .db('EatFlavor')
-        .collection('products')
+        .collection('sales')
         .findOne(new ObjectId(id));
-      expect(product).to.be.not.null;
+      expect(sale).to.be.not.null;
     });
 
     it('se não existir retorna null', async () => {
-      const product = await connectionMock
+      const sale = await connectionMock
         .db('EatFlavor')
-        .collection('products')
+        .collection('sales')
         .findOne(new ObjectId('123456123456'));
-      expect(product).to.be.null;
+      expect(sale).to.be.null;
     });
   });
 });
@@ -146,31 +105,31 @@ describe('Testa se lista todos os produtos', () => {
     connectionMock = await getConnectionMock.getConnection();
     mockedFunction = sandbox.stub(MongoClient, 'connect');
     mockedFunction.resolves(connectionMock);
-		for (let i in productsList) {
-			await Products.create(productsList[i]);
+		for (let i in saleProducts) {
+			await Sales.create(saleProducts[i]);
 		}
   })
 
   after(async () => {
-    await connectionMock.db('EatFlavor').collection('products').drop();
+    await connectionMock.db('EatFlavor').collection('sales').drop();
     sandbox.restore();
   });
 
 	it('retorna um array', async () => {
-		const response = await Products.getAll();
-		expect(response).to.be.a('object').that.have.property('products')
+		const response = await Sales.getAll();
+		expect(response).to.be.a('object').that.have.property('sales')
 	});
 	
 	it('o tamanho dessa array é igual a quantidade de produtos criados', async () => {
-		const { products } = await Products.getAll();
-		expect(products).to.have.lengthOf(productsList.length);
+		const { sales } = await Sales.getAll();
+		expect(sales).to.have.lengthOf(salesList.length);
 	});
 
 	it('o produto deve existir no banco de dados', async () => {
-		const product = connectionMock
+		const sale = connectionMock
 			.db('EatFlavor')
-			.collection('products')
+			.collection('sales')
 			.find();
-		expect(product).to.be.not.null;
+		expect(sale).to.be.not.null;
 	});
 });
