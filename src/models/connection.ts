@@ -1,7 +1,10 @@
 import { Db, MongoClient } from 'mongodb';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const DB_NAME = 'EatFlavor';
-const MONGO_DB_URL = `mongodb://127.0.0.1:27017/EatFlavor`;
+const MONGO_DB_URL = `${process.env.MONGO_URL}`;
 
 const connection = async () => {
 
