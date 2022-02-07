@@ -13,7 +13,7 @@ router.post('/sales/', Sales.create);
 
 router.get('/products', Products.getAll);
 router.get('/products/:id', Products.getById);
-router.get('/products', Products.create);
+router.post('/products', Products.create);
 
 router.post('/login', Users.login);
 router.post('/register', Users.register);
