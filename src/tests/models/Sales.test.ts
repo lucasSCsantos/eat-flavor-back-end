@@ -1,4 +1,4 @@
-import Products from "../../models/Products";
+import Sales from "../../models/Sales";
 import { expect } from "chai";
 import { Callback, MongoClient, MongoClientOptions, ObjectId } from "mongodb";
 import Sinon, { createSandbox } from "sinon";
@@ -38,7 +38,7 @@ const saleProducts = [
 	},
 ]
 
-const sale = (status: string) => ({
+const sale = (status = 'pending') => ({
   user_id: '123456123456',
   address: 'Rua maluca',
   total_price: 30.0,
@@ -70,19 +70,19 @@ describe('Testa o registro de vendas', () => {
  
   describe('quando é registrado com sucesso', () => {
     it('retorna um objeto', async () => {
-      const response = await Sales.create(sale);
+      const response = await Sales.create(sale());
 
       expect(response).to.be.a('object');
     });
 
     it('tal objeto possui o "id" da nova venda inserido', async () => {
-      const response = await Sales.create(sale);
+      const response = await Sales.create(sale());
 
       expect(response).to.have.a.property('_id');
     });
 
     it('deve existir uma venda cadastrada!', async () => {
-      const { _id } = await Sales.create(sale);
+      const { _id } = await Sales.create(sale());
       const saleCreated = await connectionMock
         .db('EatFlavor')
         .collection('sales')
@@ -102,7 +102,7 @@ describe('Testa se retorna um produto pelo id', () => {
     connectionMock = await getConnectionMock.getConnection();
     mockedFunction = sandbox.stub(MongoClient, 'connect');
     mockedFunction.resolves(connectionMock);
-    const { _id } = await Sales.create(sale);
+    const { _id } = await Sales.create(sale());
 		id = _id.toString();
   })
 
@@ -120,7 +120,6 @@ describe('Testa se retorna um produto pelo id', () => {
     
     it('o objeto contem a propriedade id', async () => {
       const response = await Sales.getById(id);
-			console.log(response)
       expect(response).to.have.property('_id')
     });
 
@@ -143,6 +142,44 @@ describe('Testa se retorna um produto pelo id', () => {
 });
 
 describe('Testa se lista todos os produtos', () => {
+  let connectionMock: MongoClient;
+  let mockedFunction: Sinon.SinonStub<[url: string, options: MongoClientOptions, callback: Callback<MongoClient>], void>;
+  
+
+  before(async () => {
+    connectionMock = await getConnectionMock.getConnection();
+    mockedFunction = sandbox.stub(MongoClient, 'connect');
+    mockedFunction.resolves(connectionMock);
+		for (let i in saleList) {
+			await Sales.create(saleList[i]);
+		}
+  })
+
+  after(async () => {
+    await connectionMock.db('EatFlavor').collection('sales').drop();
+    sandbox.restore();
+  });
+
+	it('retorna um array', async () => {
+		const response = await Sales.getAll();
+		expect(response).to.be.a('object').that.have.property('sales')
+	});
+	
+	it('o tamanho dessa array é igual a quantidade de produtos criados', async () => {
+		const { sales } = await Sales.getAll();
+		expect(sales).to.have.lengthOf(saleList.length);
+	});
+
+	it('o produto deve existir no banco de dados', async () => {
+		const sale = connectionMock
+			.db('EatFlavor')
+			.collection('sales')
+			.find();
+		expect(sale).to.be.not.null;
+	});
+});
+
+describe('Testa se atualiza um produto', () => {
   let id: ObjectId;
   let connectionMock: MongoClient;
   let mockedFunction: Sinon.SinonStub<[url: string, options: MongoClientOptions, callback: Callback<MongoClient>], void>;
