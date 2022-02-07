@@ -56,9 +56,9 @@ const validatePassword = async ({ email, password }: LoginType) => {
 
   return {
     status: 200,
-    user,
+    user: { email: user.email },
   };
-  };
+};
 
 export default async (email: string, password: string) => {
   const a = checkEmailAndPassword({ email, password });

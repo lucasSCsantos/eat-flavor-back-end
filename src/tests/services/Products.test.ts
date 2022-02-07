@@ -1,21 +1,17 @@
 import { expect } from "chai";
 import { ObjectId } from "mongodb";
 import { createSandbox } from "sinon";
+import imageUrl from "../../utils/imageUrl";
 import ProductsModel, { DbProductType } from '../../models/Products';
 import ProductsService from '../../services/Products';
 
 const sandbox = createSandbox();
 
-const IMAGE_URL = `https://images.unsplash.com/
-photo-1541832676-9b763b0239ab?ixlib=rb-1.2.1&ix
-id=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8
-&auto=format&fit=crop&w=1020&q=80`;
-
 const product = {
   name: 'Arroz de pato',
 	description: 'Um arroz sequinho, delicioso, recheado com pato e farinheira',
 	price: 10.99,
-	url_image: IMAGE_URL,
+	url_image: imageUrl,
 	category: 'food',
 	type: 'Carne Branca',
 }
@@ -26,7 +22,7 @@ const productsList = [
 		name: 'Arroz de pato',
 		description: 'Um arroz sequinho, delicioso, recheado com pato e farinheira',
 		price: 10.99,
-		url_image: IMAGE_URL,
+		url_image: imageUrl,
 		category: 'food',
 		type: 'Carne Branca',
 	},
@@ -35,7 +31,7 @@ const productsList = [
 		name: 'Arroz',
 		description: 'Um arroz sequinho, delicioso, recheado com pato e farinheira',
 		price: 10.99,
-		url_image: IMAGE_URL,
+		url_image: imageUrl,
 		category: 'food',
 		type: 'Carne Branca',
 	},
@@ -44,7 +40,7 @@ const productsList = [
 		name: 'Pato',
 		description: 'Um arroz sequinho, delicioso, recheado com pato e farinheira',
 		price: 10.99,
-		url_image: IMAGE_URL,
+		url_image: imageUrl,
 		category: 'food',
 		type: 'Carne Branca',
 	},
@@ -113,8 +109,8 @@ describe('Lista um produto por Id', () => {
 
 		it('retorna o produto de mesmo id', async () => {
 			const response = await ProductsService.getById('123456189756');
-			expect(response).to.have.property('_id');
-			const { _id } = response as DbProductType;
+			expect(response.product).to.have.property('_id');
+			const { _id } = response.product as DbProductType;
 			expect(_id).to.be.equal(productsList[2]._id);
 		});
 	});
@@ -139,7 +135,7 @@ describe('Cria um produto', () => {
 
     it('tal objeto possui o "id" do novo produto inserido', async () => {
       const response = await ProductsService.create(product);
-      expect(response).to.have.a.property('_id');
+      expect(response.product).to.have.a.property('_id');
     });
   });
 });

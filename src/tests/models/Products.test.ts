@@ -3,19 +3,15 @@ import { expect } from "chai";
 import { Callback, MongoClient, MongoClientOptions, ObjectId } from "mongodb";
 import Sinon, { createSandbox } from "sinon";
 import getConnectionMock from "../mocks/getConnectionMock";
+import imageUrl from "../../utils/imageUrl";
 
 const sandbox = createSandbox();
-
-const IMAGE_URL = `https://images.unsplash.com/
-photo-1541832676-9b763b0239ab?ixlib=rb-1.2.1&ix
-id=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8
-&auto=format&fit=crop&w=1020&q=80`;
 
 const product = {
   name: 'Arroz de pato',
 	description: 'Um arroz sequinho, delicioso, recheado com pato e farinheira',
 	price: 10.99,
-	url_image: IMAGE_URL,
+	url_image: imageUrl,
 	category: 'food', //food, drink, dessert
 	type: 'Carne Branca',
 }
@@ -25,7 +21,7 @@ const productsList = [
 		name: 'Arroz de pato',
 		description: 'Um arroz sequinho, delicioso, recheado com pato e farinheira',
 		price: 10.99,
-		url_image: IMAGE_URL,
+		url_image: imageUrl,
 		category: 'food',
 		type: 'Carne Branca',
 	},
@@ -33,7 +29,7 @@ const productsList = [
 		name: 'Arroz',
 		description: 'Um arroz sequinho, delicioso, recheado com pato e farinheira',
 		price: 10.99,
-		url_image: IMAGE_URL,
+		url_image: imageUrl,
 		category: 'food', //food, drink, dessert
 		type: 'Carne Branca',
 	},
@@ -41,7 +37,7 @@ const productsList = [
 		name: 'Pato',
 		description: 'Um arroz sequinho, delicioso, recheado com pato e farinheira',
 		price: 10.99,
-		url_image: IMAGE_URL,
+		url_image: imageUrl,
 		category: 'food', //food, drink, dessert
 		type: 'Carne Branca',
 	},

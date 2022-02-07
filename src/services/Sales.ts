@@ -12,19 +12,19 @@ const getById = async (id: string) => {
 
   const sale = await Sales.getById(id);
 
-  return sale;
+  return { status: 200 , sale };
 };
 
 const create = async ({ user_id, address, total_price, sale_date, status, products }: SaleType) => {
   const sale = await Sales.create({ user_id, address, total_price, sale_date, status, products });
-  return sale;
+  return { status: 201, sale };
 };
 
 const update = async (id: string, status: string) => {
   if (!ObjectId.isValid(id) || !id) return { status: 400, message: "Invalid id" };
   if (!statusTypes.includes(status)) return { status: 400, message: "Invalid status"};
   const sale = await Sales.update(id, status);
-  return sale;
+  return { status: 200 , sale };
 };
 
 export default {

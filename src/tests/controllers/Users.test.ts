@@ -1,69 +1,119 @@
-// import { expect } from "chai";
-// import Sinon, { createSandbox } from "sinon";
-// import UsersModel from '../../models/Users';
-// import UsersService from '../../services/Users';
+// import chai, { expect } from "chai";
+// import { Request, Response } from "express";
+// import { createSandbox } from "sinon";
+// import sinonChai from 'sinon-chai';
+// import jwtValidation from "../../validations/jwtValidation";
+
+// chai.use(sinonChai)
 
 // const sandbox = createSandbox();
 
-// describe('Insere um novo usuário no DB', () => {
-//   describe('quando os dados informados são inválidos', () => {
-// 		it('retorna a mensagem correta se são vazios', async () => {
-// 			const payload = {};
-//       const response = await UsersService.login(payload);
-//       expect(response.message).to.be.equal('Email and password are required')
-//     });
+// import UserService from '../../services/Users';
+// import UserController from '../../controllers/Users';
 
-// 		it('retorna a mensagem correta se o email for inválido', async () => {
-// 			const payload = { email: 'cristovam10@gmail', password: '123456'};
-// 			const response = await UsersService.login(payload);
-// 			expect(response.message).to.be.equal('Email is not valid')
-// 		});
-
-//     it('retorna a mensagem correta se a senha for menor que 6', async () => {
-// 			const payload = { email: 'lucicreide@gmail.com', password: '1234'};
-//       const response = await UsersService.login(payload);
-//       expect(response.message).to.be.equal('Password must be at least 6 characters long')
-//     });
-		
-// 		it('retorna a mensagem correta se o usuário não existir', async () => {
-// 			const payload = { email: 'lucicreide@gmail.com', password: '123456'};
-// 			const response = await UsersService.login(payload);
-// 			expect(response.message).to.be.equal('User not found')
-// 		});
-
-// 		it('retorna a mensagem correta se a senha for incorreta', async () => {
-// 			const payload = { email: 'luc.cristovam10@gmail.com', password: '1234567'};
-//       const response = await UsersService.login(payload);
-// 			expect(response.message).to.be.equal('Invalid password')
-//     });
-//   });
-
-//   describe('quando é inserido com sucesso', () => {
-//     const payload = {
-//       email: 'luc.cristovam10@gmail.com',
-//       password: '123456',
-//     };
+// describe('Ao chamar o controller de login', () => {
+// 	describe('quando os dados informados são inválidos', () => {
+// 		const response: any = { status: '', json: { message: '' } };
+//     let request: any = { body: {} };
 
 //     before(() => {
-//       const email = 'luc.cristovam10@gmail.com';
-// 			sandbox.stub(UsersModel, 'getByEmail')
-// 				.resolves({ email, password: '25d55ad283aa400af464c76d713c07ad' });
+//       response.status = sandbox.stub()
+//         .returns(response);
+//       response.json = sandbox.stub()
+//         .returns();
+
+//       sandbox.stub(UserService, 'login')
+//         .resolves();
+//  		});
+
+//     after(() => {
+//       sandbox.restore();
 //     });
+		
+// 		it('retorna a mensagem e o status correto se são vazios', async () => {
+// 			request.body = {
+// 				email: '',
+// 				password: '',
+// 			};
+//       await UserController.login(request, response);
+// 			console.log('aaaaaaaaaaaaaaa')
+// 			expect(response.status).to.have.been.calledWith(400);
+// 			expect(response.json).to.have.been.calledWith({ message: 'Email and password are required' });
+//     });
+
+// 		it('retorna a mensagem e o status correto se o email for inválido', async () => {
+// 			request.body = {
+// 				email: 'cristovam@gmail',
+// 				password: '123456',
+// 			};
+//       await UserController.login(request, response);
+// 			expect(response.status).to.have.been.calledWith(400);
+// 			expect(response.json).to.have.been.calledWith({ message: 'Invalid Email' });
+// 		});
+
+//     it('retorna a mensagem e o status correto se a senha for menor que 6', async () => {
+// 			request.body = {
+// 				email: 'luc.cristovam@gmail.com',
+// 				password: '12345',
+// 			};
+//       await UserController.login(request, response);
+// 			expect(response.status).to.have.been.calledWith(400);
+// 			expect(response.json).to.have.been.calledWith({ message: 'Password must be at least 6 characters long' });
+//     });
+		
+// 		it('retorna a mensagem e o status correto se o usuário não existir', async () => {
+// 			request.body = {
+// 				email: 'lucicreide@gmail.com',
+// 				password: '123456',
+// 			};
+//       await UserController.login(request, response);
+// 			expect(response.status).to.have.been.calledWith(400);
+// 			expect(response.json).to.have.been.calledWith({ message: 'Password must be at least 6 characters long' });
+// 		});
+// 		it('retorna a mensagem e o status correto se a senha for incorreta', async () => {
+// 			request.body = {
+// 				email: 'lucicreide@gmail.com',
+// 				password: '123456',
+// 			};
+//       await UserController.login(request, response);
+// 			expect(response.status).to.have.been.calledWith(400);
+// 			expect(response.json).to.have.been.calledWith({ message: 'Invalid password' });
+//     });
+//   });
+//   describe('quando os dados são válidos', () => {
+//     let response: Response;
+//     let request: Request;
+
+// 		const user = { email: 'luc.cristovam10@gmail.com', token: '12345678'}
+
+//     before(() => {
+//       response.status = sandbox.stub()
+//         .returns(response);
+//       response.json = sandbox.stub()
+//         .returns(response);
+// 			sandbox.stub(jwtValidation, 'createToken')
+// 				.returns('12345678');
+
+  
+//       sandbox.stub(UserService, 'login')
+//         .resolves();
+//   	});
 
 //     after(() => {
 // 			sandbox.restore();
 //     });
 
-//     it('retorna um objeto', async () => {
-//       const response = await UsersService.login(payload);
+// 		it('é chamado o status com o código 201', async () => {
+//       await UserController.login(request, response);
 
-//       expect(response).to.be.a('object');
+//       expect(response.status).to.have.been.calledWith(200);
 //     });
 
-//     it('retorna user dentro do objeto e o status 200', async () => {
-//       const response = await UsersService.create(payload);
+//     it('é chamado o json com o usuário com o email e token', async () => {
+//       await UserController.login(request, response);
 
-// 			expect(response.user).to.be.equal('Invalid password')
+//       expect(response.json).to.have.been.calledWith(user);
 //     });
+
 //   });
 // });

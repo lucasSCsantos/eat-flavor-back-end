@@ -1,22 +1,18 @@
 import { expect } from "chai";
 import { ObjectId } from "mongodb";
 import { createSandbox } from "sinon";
-import SalesModel, { SaleType } from '../../models/Sales';
+import imageUrl from "../../utils/imageUrl";
+import SalesModel from '../../models/Sales';
 import SalesService from '../../services/Sales';
 
 const sandbox = createSandbox();
-
-const IMAGE_URL = `https://images.unsplash.com/
-photo-1541832676-9b763b0239ab?ixlib=rb-1.2.1&ix
-id=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8
-&auto=format&fit=crop&w=1020&q=80`;
 
 const saleProducts = [
 	{
 		name: 'Arroz de pato',
 		description: 'Um arroz sequinho, delicioso, recheado com pato e farinheira',
 		price: 10.99,
-		url_image: IMAGE_URL,
+		url_image: imageUrl,
 		category: 'food',
 		type: 'Carne Branca',
 	},
@@ -24,7 +20,7 @@ const saleProducts = [
 		name: 'Arroz',
 		description: 'Um arroz sequinho, delicioso, recheado com pato e farinheira',
 		price: 10.99,
-		url_image: IMAGE_URL,
+		url_image: imageUrl,
 		category: 'food', //food, drink, dessert
 		type: 'Carne Branca',
 	},
@@ -32,7 +28,7 @@ const saleProducts = [
 		name: 'Pato',
 		description: 'Um arroz sequinho, delicioso, recheado com pato e farinheira',
 		price: 10.99,
-		url_image: IMAGE_URL,
+		url_image: imageUrl,
 		category: 'food', //food, drink, dessert
 		type: 'Carne Branca',
 	},
@@ -122,8 +118,8 @@ describe('Lista uma venda por Id', () => {
 
 		it('retorna a venda de mesmo id', async () => {
 			const response = await SalesService.getById('123456189756');
-			expect(response).to.have.property('_id');
-			const { _id } = response as { _id: ObjectId };
+			expect(response.sale).to.have.property('_id');
+			const { _id } = response.sale as { _id: ObjectId };
 			expect(_id).to.be.equal(saleList[2]._id);
 		});
 	});
@@ -148,7 +144,7 @@ describe('Cria uma venda', () => {
 
     it('tal objeto possui a "id" do novo venda inserido', async () => {
       const response = await SalesService.create(sale());
-      expect(response).to.have.a.property('_id');
+      expect(response.sale).to.have.a.property('_id');
     });
   });
 });
@@ -184,8 +180,8 @@ describe('Atualiza o status de uma venda', () => {
 
     it('tal objeto possui o mesmo id inserido', async () => {
 			const response = await SalesService.update('123456123957', 'sent');
-      expect(response).to.have.a.property('_id');
-			const { _id } = response as { _id: ObjectId };
+      expect(response.sale).to.have.a.property('_id');
+			const { _id } = response.sale as { _id: ObjectId };
 			console.log(_id.toString() === '123456123957')
 			expect(_id).to.be.equal(updatedSale._id);
     });
@@ -193,7 +189,7 @@ describe('Atualiza o status de uma venda', () => {
 		it('o status mudou de fato', async () => {
 			const response = await SalesService.update('123456123957', 'sent');
       expect(response).to.have.a.property('status');
-			const { status } = response as { status: string };
+			const { status } = response.sale as { status: string };
 			expect(status).to.be.not.equal(sale().status);
     });
   });

@@ -23,6 +23,7 @@ export type DbProductType = {
 const getAll = async () => {
   const products = await connection.connection()
     .then((db) => db.collection('products').find().toArray());
+
   return { products } as { products: DbProductType[] };
 };
 
