@@ -1,44 +1,48 @@
 import Users from "../../models/Users";
 import { expect } from "chai";
 import { Callback, MongoClient, MongoClientOptions } from "mongodb";
-import Sinon from "sinon";
+import Sinon, { createSandbox } from "sinon";
 import getConnectionMock from "../mocks/getConnectionMock";
+
+const sandbox = createSandbox();
 
 describe('Testa o endpoint POST `register`', () => {
   let connectionMock: MongoClient;
   let mockedFunction: Sinon.SinonStub<[url: string, options: MongoClientOptions, callback: Callback<MongoClient>], void>;
 
-  const email = 'luc.cristovam10@gmail.com';
-  
+	const register = {
+		email: 'luc.cristovam10@gmail.com',
+		name: 'Lucas Santos',
+		password: '25d55ad283aa400af464c76d713c07ad',
+		role: 'client'
+	}
+
   before(async () => {
     connectionMock = await getConnectionMock.getConnection();
-    mockedFunction = Sinon.stub(MongoClient, 'connect');
+    mockedFunction = sandbox.stub(MongoClient, 'connect');
     mockedFunction.resolves(connectionMock);
   })
 
   after(async () => {
-    await connectionMock.db('EatFlavor').collection('movies').drop();
-    mockedFunction.restore();
+    await connectionMock.db('EatFlavor').collection('users').drop();
+    sandbox.restore();
   });
  
-  describe('Quando é inserido com sucesso', () => {
-    it('o usuário deve existir no banco de dados', async () => {
-      const response = await Users.getByEmail(email);
-      expect(response).to.be.not.null;
-    });
-
+  describe('Quando é registrado com sucesso', () => {
     it('retorna um objeto', async () => {
-      const response = await Users.getByEmail(email);
-      expect(response).to.be.a('object')
-    });
-    
-    it('o usuário tem uma senha registrada', async () => {
-      const response = await Users.getByEmail(email);
-      expect(response).to.have.property('password')
+      const response = await Users.create(register);
+
+      expect(response).to.be.a('object');
     });
 
-    it('deve existir um usuário com o email cadastrado!', async () => {
-      await User.create(register);
+    it('tal objeto possui o "id" do novo filme inserido', async () => {
+      const response = await Users.create(register);
+
+      expect(response).to.have.a.property('_id');
+    });
+
+    it('deve existir um filme com o título cadastrado!', async () => {
+      await Users.create(register);
       const userCreated = await connectionMock
         .db('EatFlavor')
         .collection('users')
