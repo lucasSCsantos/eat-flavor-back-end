@@ -10,16 +10,26 @@ export type ProductType = {
 	category: string
 }
 
+export type DbProductType = {
+	_id: ObjectId,
+	name: string,
+	description: string,
+	type: string,
+	price: number,
+	url_image: string,
+	category: string
+}
+
 const getAll = async () => {
   const products = await connection.connection()
     .then((db) => db.collection('products').find().toArray());
-  return { products };
+  return { products } as { products: DbProductType[] };
 };
 
 const getById = async (id: string) => {
-	if (!ObjectId.isValid(id)) {
-    return false;
-}
+// 	if (!ObjectId.isValid(id)) {
+//     return false;
+// }
 
   const product = await connection.connection()
     .then((db) => db.collection('products').findOne(new ObjectId(id)));
