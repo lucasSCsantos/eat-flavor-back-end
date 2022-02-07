@@ -16,8 +16,8 @@ export default async (req: { [key: string]: any } , res: Response, next: NextFun
 
   try {
     const decoded = jwt.verify(token, key);
-		console.log(decoded);
-    const user = await Users.getByEmail(decoded.data.email);
+		const { data } = decoded as { data: { email: string } }
+    const user = await Users.getByEmail(data.email);
 
     if (!user) {
       return res
