@@ -48,6 +48,11 @@ const sale = (status = 'pending') => ({
   products: saleProducts,
 });
 
+const updatedSale = {
+	_id: new ObjectId('123456123957'),
+  status: 'sent',
+}
+
 const saleList = [
   sale('pending'),
   sale('preparing'),
@@ -144,6 +149,51 @@ describe('Cria uma venda', () => {
     it('tal objeto possui a "id" do novo venda inserido', async () => {
       const response = await SalesService.create(sale());
       expect(response).to.have.a.property('_id');
+    });
+  });
+});
+
+describe('Atualiza o status de uma venda', () => {
+
+	before(() => {
+		sandbox.stub(SalesModel, 'update')
+			.resolves(updatedSale);
+	});
+
+	after(() => {
+		sandbox.restore();
+	});
+
+	describe('quando os dados são inválidos', () => {
+    it('retorna um objeto com mensagem se status for inválido', async () => {
+      const response = await SalesService.update('123456123957', 'invalid');
+      expect(response).to.have.property('message');
+    });
+
+    it('retorna um objeto com mensagem se o id não existir ou for inválido', async () => {
+      const response = await SalesService.update('', 'sent');
+      expect(response).to.have.property('message');
+    });
+  });
+
+	describe('quando é inserido com sucesso', () => {
+    it('retorna um objeto', async () => {
+      const response = await SalesService.update('123456123957', 'sent');
+      expect(response).to.have.property('message');
+    });
+
+    it('tal objeto possui o mesmo id inserido', async () => {
+			const response = await SalesService.update('123456123957', 'sent');
+      expect(response).to.have.a.property('_id');
+			const { _id } = response as { _id: ObjectId };
+			expect(_id).to.be.equal(new ObjectId('123456123957'));
+    });
+
+		it('o status mudou de fato', async () => {
+			const response = await SalesService.update('123456123957', 'sent');
+      expect(response).to.have.a.property('status');
+			const { status } = response as { status: string };
+			expect(status).to.be.not.equal(sale().status);
     });
   });
 });

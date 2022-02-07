@@ -7,7 +7,7 @@ export type SaleType = {
   address: string,
   total_price: number,
   sale_date: Date,
-  status: string,
+  status:string,
   products: ProductType[],
 }
 
@@ -41,7 +41,7 @@ const update = async (id: string, status: string) => {
       } },
     ));
   return { 
-    _id: id, 
+    _id: new ObjectId(id), 
     status,
   };
 };
