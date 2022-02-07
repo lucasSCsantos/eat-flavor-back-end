@@ -1,22 +1,18 @@
 import { expect } from "chai";
 import { ObjectId } from "mongodb";
 import { createSandbox } from "sinon";
-import SalesModel, { SaleType } from '../../models/Sales';
+import imageUrl from "src/utils/imageUrl";
+import SalesModel from '../../models/Sales';
 import SalesService from '../../services/Sales';
 
 const sandbox = createSandbox();
-
-const IMAGE_URL = `https://images.unsplash.com/
-photo-1541832676-9b763b0239ab?ixlib=rb-1.2.1&ix
-id=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8
-&auto=format&fit=crop&w=1020&q=80`;
 
 const saleProducts = [
 	{
 		name: 'Arroz de pato',
 		description: 'Um arroz sequinho, delicioso, recheado com pato e farinheira',
 		price: 10.99,
-		url_image: IMAGE_URL,
+		url_image: imageUrl,
 		category: 'food',
 		type: 'Carne Branca',
 	},
@@ -24,7 +20,7 @@ const saleProducts = [
 		name: 'Arroz',
 		description: 'Um arroz sequinho, delicioso, recheado com pato e farinheira',
 		price: 10.99,
-		url_image: IMAGE_URL,
+		url_image: imageUrl,
 		category: 'food', //food, drink, dessert
 		type: 'Carne Branca',
 	},
@@ -32,7 +28,7 @@ const saleProducts = [
 		name: 'Pato',
 		description: 'Um arroz sequinho, delicioso, recheado com pato e farinheira',
 		price: 10.99,
-		url_image: IMAGE_URL,
+		url_image: imageUrl,
 		category: 'food', //food, drink, dessert
 		type: 'Carne Branca',
 	},
