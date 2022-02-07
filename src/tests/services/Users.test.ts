@@ -148,8 +148,6 @@ describe('Insere um novo usuário no DB', () => {
 
 		before(() => {
 			const email = 'luc.cristovam10@gmail.com';
-			// sandbox.stub(UsersModel, 'getByEmail')
-			// 	.resolves({ email, password: '6c44e5cd17f0019c64b042e4a745412a' });
 			sandbox.stub(UsersModel, 'create')
 				.resolves({ email, name: 'Lucas', _id: new ObjectId('123456123456') });
 		});

@@ -27,10 +27,6 @@ const getAll = async () => {
 };
 
 const getById = async (id: string) => {
-// 	if (!ObjectId.isValid(id)) {
-//     return false;
-// }
-
   const product = await connection.connection()
     .then((db) => db.collection('products').findOne(new ObjectId(id)));
 

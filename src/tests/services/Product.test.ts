@@ -11,6 +11,25 @@ photo-1541832676-9b763b0239ab?ixlib=rb-1.2.1&ix
 id=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8
 &auto=format&fit=crop&w=1020&q=80`;
 
+const product = {
+  name: 'Arroz de pato',
+	description: 'Um arroz sequinho, delicioso, recheado com pato e farinheira',
+	price: 10.99,
+	url_image: IMAGE_URL,
+	category: 'food',
+	type: 'Carne Branca',
+}
+
+const invalidProduct = {
+	_id: '',
+	name: '',
+	description: '',
+	price: 0,
+	url_image: '',
+	category: '',
+	type: '',
+}
+
 const productsList = [
 	{
 		_id: new ObjectId('123456123456'),
@@ -27,7 +46,7 @@ const productsList = [
 		description: 'Um arroz sequinho, delicioso, recheado com pato e farinheira',
 		price: 10.99,
 		url_image: IMAGE_URL,
-		category: 'food', //food, drink, dessert
+		category: 'food',
 		type: 'Carne Branca',
 	},
 	{
@@ -36,7 +55,7 @@ const productsList = [
 		description: 'Um arroz sequinho, delicioso, recheado com pato e farinheira',
 		price: 10.99,
 		url_image: IMAGE_URL,
-		category: 'food', //food, drink, dessert
+		category: 'food',
 		type: 'Carne Branca',
 	},
 ]
@@ -76,18 +95,19 @@ describe('Lista um produto por Id', () => {
 
 	describe('quando id é inválido', () => {
 		it('retorna null se é vazio', async () => {
-			const response = await ProductsService.getById();
+			const response = await ProductsService.getById('');
 			expect(response).to.be.null
 		});
 
-		it('retorna null se não é um ObjectId válido', async () => {
+		it('retorna um objeto com mensagem se não é um ObjectId válido', async () => {
 			const response = await ProductsService.getById('123');
-			expect(response).to.be.null
+			expect(response).to.have.property('message');
 		});
 	});
 
 	describe('quando é listado com sucesso', () => {
 		before(() => {
+			sandbox.restore();
 			sandbox.stub(ProductsModel, 'getById')
 				.resolves(productsList[2]);
 		});
@@ -104,7 +124,39 @@ describe('Lista um produto por Id', () => {
 		it('retorna o produto de mesmo id', async () => {
 			const response = await ProductsService.getById('123456189756');
 			expect(response).to.have.property('_id');
-			expect(response._id).to.be.equal(productsList[2]._id);
+			expect(response?._id).to.be.equal(productsList[2]._id);
 		});
 	});
+});
+
+describe('Cria um produto', () => {
+
+	before(() => {
+		sandbox.stub(ProductsModel, 'create')
+			.resolves(productsList[0]);
+	});
+
+	after(() => {
+		sandbox.restore();
+	});
+
+	describe('quando as informações são inválidas', () => {
+		it('retorna null se forem vazias', async () => {
+			const response = await ProductsService.create(invalidProduct);
+			expect(response).to.have.property('message');
+		});
+	});
+
+	describe('quando é inserido com sucesso', () => {
+    it('retorna um objeto', async () => {
+      const response = await ProductsService.create(product);
+      expect(response).to.be.a('object');
+    });
+
+    it('tal objeto possui o "id" do novo produto inserido', async () => {
+      const response = await ProductsService.create(product);
+      expect(response).to.have.a.property('_id');
+    });
+
+  });
 });
