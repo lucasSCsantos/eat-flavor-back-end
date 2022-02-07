@@ -39,7 +39,7 @@ const saleProducts = [
 ]
 
 const sale = (status = 'pending') => ({
-  user_id: '123456123456',
+  user_id: '123456123457',
   address: 'Rua maluca',
   total_price: 30.0,
   sale_date: new Date(),
@@ -92,7 +92,7 @@ describe('Testa o registro de vendas', () => {
   });
 });
 
-describe('Testa se retorna um produto pelo id', () => {
+describe('Testa se retorna uma venda pelo id', () => {
   let id: string;
   let connectionMock: MongoClient;
   let mockedFunction: Sinon.SinonStub<[url: string, options: MongoClientOptions, callback: Callback<MongoClient>], void>;
@@ -123,7 +123,7 @@ describe('Testa se retorna um produto pelo id', () => {
       expect(response).to.have.property('_id')
     });
 
-    it('o produto deve existir no banco de dados', async () => {
+    it('a venda deve existir no banco de dados', async () => {
       const sale = await connectionMock
         .db('EatFlavor')
         .collection('sales')
@@ -141,7 +141,7 @@ describe('Testa se retorna um produto pelo id', () => {
   });
 });
 
-describe('Testa se lista todos os produtos', () => {
+describe('Testa se lista todas as vendas', () => {
   let connectionMock: MongoClient;
   let mockedFunction: Sinon.SinonStub<[url: string, options: MongoClientOptions, callback: Callback<MongoClient>], void>;
   
@@ -165,12 +165,12 @@ describe('Testa se lista todos os produtos', () => {
 		expect(response).to.be.a('object').that.have.property('sales')
 	});
 	
-	it('o tamanho dessa array é igual a quantidade de produtos criados', async () => {
+	it('o tamanho dessa array é igual a quantidade de vendas criadas', async () => {
 		const { sales } = await Sales.getAll();
 		expect(sales).to.have.lengthOf(saleList.length);
 	});
 
-	it('o produto deve existir no banco de dados', async () => {
+	it('a venda deve existir no banco de dados', async () => {
 		const sale = connectionMock
 			.db('EatFlavor')
 			.collection('sales')
@@ -179,8 +179,8 @@ describe('Testa se lista todos os produtos', () => {
 	});
 });
 
-describe('Testa se atualiza um produto', () => {
-  let id: ObjectId;
+describe('Testa se atualiza o status de uma venda', () => {
+  let id: string;
   let connectionMock: MongoClient;
   let mockedFunction: Sinon.SinonStub<[url: string, options: MongoClientOptions, callback: Callback<MongoClient>], void>;
   
@@ -189,9 +189,8 @@ describe('Testa se atualiza um produto', () => {
     connectionMock = await getConnectionMock.getConnection();
     mockedFunction = sandbox.stub(MongoClient, 'connect');
     mockedFunction.resolves(connectionMock);
-		for (let i in saleList) {
-			await Sales.create(saleList[i]);
-		}
+    const { _id } = await Sales.create(sale());
+		id = _id.toString();
   })
 
   after(async () => {
@@ -199,21 +198,38 @@ describe('Testa se atualiza um produto', () => {
     sandbox.restore();
   });
 
-	it('retorna um array', async () => {
-		const response = await Sales.getAll();
-		expect(response).to.be.a('object').that.have.property('sales')
-	});
-	
-	it('o tamanho dessa array é igual a quantidade de produtos criados', async () => {
-		const { sales } = await Sales.getAll();
-		expect(sales).to.have.lengthOf(saleList.length);
-	});
+	describe('quando é inserido com sucesso', () => {
+    it('retorna um objeto', async () => {
+      const response = await Sales.update(id, 'progress');
+      expect(response).to.be.a('object');
+    });
+    
+    it('o objeto contem a propriedade status', async () => {
+      const response = await Sales.update(id, 'progress');
+      expect(response).to.have.property('status');
+    });
 
-	it('o produto deve existir no banco de dados', async () => {
-		const sale = connectionMock
-			.db('EatFlavor')
-			.collection('sales')
-			.find();
-		expect(sale).to.be.not.null;
-	});
+    it('a nova venda contem um status diferente do original', async () => {
+      const sale = await connectionMock
+        .db('EatFlavor')
+        .collection('sales')
+        .findOne(new ObjectId(id));
+      await Sales.update(id, 'progress');
+      const newSale = await connectionMock
+        .db('EatFlavor')
+        .collection('sales')
+        .findOne(new ObjectId(id));
+
+      expect(sale).to.be.not.equal(newSale);
+      expect(sale?.status).to.be.not.equal(newSale?.status);
+    });
+
+    it('se não existir retorna null', async () => {
+      const sale = await connectionMock
+        .db('EatFlavor')
+        .collection('sales')
+        .findOne(new ObjectId('123456123456'));
+      expect(sale).to.be.null;
+    });
+  });
 });
