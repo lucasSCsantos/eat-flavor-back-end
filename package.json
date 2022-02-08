@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
     "test": "mocha -r ts-node/register src/**/*$NAME*.test.ts",
     "dev": "ts-node-dev -r tsconfig-paths/register --respawn --ignore-watch node_modules --no-notify src/api/server.ts",
-    "start": "node src/api/server.ts"
+    "start": "node dist/server.js"
   },
   "keywords": [],
   "author": "",
