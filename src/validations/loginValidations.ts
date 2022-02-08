@@ -1,7 +1,7 @@
 import emailRegex from '../utils/emailRegex';
 import crypto from 'crypto';
 import Users from '../models/Users';
-import { LoginType } from '@services/Users';
+import { LoginType } from '../services/Users';
 
 const checkEmailAndPassword = ({ email, password }: LoginType) => {
   if (!email || !password) {
