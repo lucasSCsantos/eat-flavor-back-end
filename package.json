@@ -9,8 +9,7 @@
     "deploy": "git add . && git commit -m Heroku && git push",
     "tsc": "./node_modules/typescript/bin/tsc",
     "build": "tsc",
-    "postinstall": "yarn run build",
-    "start": "npm run tsc && node dist/index.js"
+    "start": "yarn install && yarn run build  && node dist/index.js"
   },
   "keywords": [],
   "author": "",
