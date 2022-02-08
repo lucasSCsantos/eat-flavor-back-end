@@ -14,7 +14,7 @@ const login = async (req: Request, res: Response) => {
   const token = jwtValidation.createToken(email);
   const { message, status, user }: any = await Users.login({ email, password });
 
-	if (message) res.status(status).json({ message });
+	if (message) return res.status(status).json({ message });
 
   user.token = token;
 
