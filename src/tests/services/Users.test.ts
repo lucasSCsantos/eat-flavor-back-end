@@ -49,7 +49,7 @@ describe('Loga com um usuário no DB', () => {
 		it('retorna um objeto com mensagem se a senha for incorreta', async () => {
 			sandbox.restore();
 			sandbox.stub(UsersModel, 'getByEmail')
-				.resolves({ email, password: '25d55ad283aa400af464c76d713c07ad' });
+				.resolves({ email, password: '25d55ad283aa400af464c76d713c07ad', _id: new ObjectId('123456123456'), });
 			const payload = { email: 'luc.cristovam10@gmail.com', password: '1234567'};
       const response = await UsersService.login(payload);
 			expect(response).to.have.property('message')
@@ -66,7 +66,7 @@ describe('Loga com um usuário no DB', () => {
     before(() => {
       const email = 'luc.cristovam10@gmail.com';
 			sandbox.stub(UsersModel, 'getByEmail')
-				.resolves({ email, password: '6c44e5cd17f0019c64b042e4a745412a' });
+				.resolves({ email, password: '6c44e5cd17f0019c64b042e4a745412a', _id: new ObjectId('123456123456'), });
     });
 
     after(() => {
