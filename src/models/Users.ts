@@ -10,7 +10,7 @@ const getByEmail = async (email: string) => {
 	const user = await connection.connection()
     .then((db) => db.collection('users').findOne({ email }));
 
-	if (user) return { email, password: user.password };
+	if (user) return { email, password: user.password, _id: user._id };
 
   return null;
 };
