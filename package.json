@@ -7,9 +7,9 @@
     "test": "mocha -r ts-node/register src/**/*$NAME*.test.ts",
     "dev": "ts-node-dev -r tsconfig-paths/register --respawn --ignore-watch node_modules --no-notify src/api/server.ts",
     "deploy": "git add . && git commit -m Heroku && git push",
-    "start": "yarn tsc && node dist/index.js",
     "tsc": "tsc",
-    "postinstall": "yarn run tsc"
+    "start": "npm run tsc && node dist/index.js",
+    "postinstall": "npm run tsc"
   },
   "keywords": [],
   "author": "",
