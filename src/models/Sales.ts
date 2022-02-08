@@ -1,6 +1,6 @@
 import { ObjectId } from "mongodb";
 import connection from "./connection";
-import { ProductType } from "./Products";
+import { DbProductType, ProductType } from "./Products";
 
 export type SaleType = {
 	user_id: string,
@@ -8,7 +8,7 @@ export type SaleType = {
   total_price: number,
   sale_date: Date,
   status:string,
-  products: ProductType[],
+  products: DbProductType[],
 }
 
 const getAll = async () => {
