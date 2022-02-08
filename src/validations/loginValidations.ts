@@ -56,7 +56,7 @@ const validatePassword = async ({ email, password }: LoginType) => {
 
   return {
     status: 200,
-    user: { email: user.email },
+    user: { email: user.email, _id: user._id },
   };
 };
 
