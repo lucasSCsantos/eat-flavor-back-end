@@ -15,9 +15,9 @@ export default async (req: { [key: string]: any } , res: Response, next: NextFun
 
   try {
     const decoded = jwt.verify(token, key);
-		const { data } = decoded as { data: { email: string } }
+		const { email } = decoded as { email: string }
 
-    if (data.email !== 'admin@admin.com') {
+    if (email !== 'admin@admin.com') {
       return res
         .status(401)
         .json({ message: 'Permission denied' });
