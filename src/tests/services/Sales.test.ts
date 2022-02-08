@@ -9,6 +9,7 @@ const sandbox = createSandbox();
 
 const saleProducts = [
 	{
+		_id: new ObjectId('123456123458'),
 		name: 'Arroz de pato',
 		description: 'Um arroz sequinho, delicioso, recheado com pato e farinheira',
 		price: 10.99,
@@ -17,6 +18,7 @@ const saleProducts = [
 		type: 'Carne Branca',
 	},
 	{
+		_id: new ObjectId('123456123459'),
 		name: 'Arroz',
 		description: 'Um arroz sequinho, delicioso, recheado com pato e farinheira',
 		price: 10.99,
@@ -25,6 +27,7 @@ const saleProducts = [
 		type: 'Carne Branca',
 	},
 	{
+		_id: new ObjectId('123456123456'),
 		name: 'Pato',
 		description: 'Um arroz sequinho, delicioso, recheado com pato e farinheira',
 		price: 10.99,
