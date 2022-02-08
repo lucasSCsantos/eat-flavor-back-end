@@ -9,7 +9,7 @@
     "dev": "ts-node-dev -r tsconfig-paths/register --respawn --ignore-watch node_modules --no-notify src/api/server.ts",
     "start": "node dist/server.js",
     "deploy": "git add . && git commit -m Heroku && git push",
-    "prestart": "tsc"
+    "prestart": "yarn tsc"
   },
   "keywords": [],
   "author": "",
