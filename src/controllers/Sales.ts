@@ -1,5 +1,6 @@
 import Sales from '../services/Sales';
 import { Request, Response } from 'express';
+import { SaleType } from '../models/Sales';
 
 const getAll = async (req: Request, res: Response) => {
   const sales = await Sales.getAll();
@@ -28,7 +29,7 @@ const update = async (req: Request, res: Response) => {
 };
 
 const create = async (req: Request, res: Response) => {
-  const { user_id, address, total_price, sale_date, status, products } = req.body;
+  const { user_id, address, total_price, sale_date, status, products }: SaleType = req.body;
   const { status: statusCode, message, sale }: any = await Sales.create({ user_id, address, total_price, sale_date, status, products });
 
   if (!sale) return res.status(statusCode).json(message)
