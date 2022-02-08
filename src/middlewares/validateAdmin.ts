@@ -1,7 +1,6 @@
 import jwt from 'jsonwebtoken';
 import path from 'path';
 import fs from 'fs';
-import Users from '@models/Users';
 import { NextFunction, Response } from 'express';
 
 const pathToKey = path.join(__dirname, '../../jwt.evaluation.key');
@@ -17,7 +16,7 @@ export default async (req: { [key: string]: any } , res: Response, next: NextFun
   try {
     const decoded = jwt.verify(token, key);
 		const { data } = decoded as { data: { email: string } }
-    
+
     if (data.email !== 'admin@admin.com') {
       return res
         .status(401)

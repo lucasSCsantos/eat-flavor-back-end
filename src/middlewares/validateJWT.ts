@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import path from 'path';
 import fs from 'fs';
-import Users from '@models/Users';
+import Users from '../models/Users';
 import { NextFunction, Response } from 'express';
 
 const pathToKey = path.join(__dirname, '../../jwt.evaluation.key');
