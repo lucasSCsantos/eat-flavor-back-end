@@ -9,10 +9,11 @@
   <img alt="Repository Size" src="https://img.shields.io/github/repo-size/lucasSCsantos/pokedexApp">
 </p>
 
-<h1 align="center">
+<h3 align="center">
   A api está hospedada no Heroku e pode ser acessada através da url: 
+	<br/>
 	"https://eatflavor-bd.herokuapp.com/"
-</h1>
+</h3>
 
 ## :page_with_curl: Sobre
 
