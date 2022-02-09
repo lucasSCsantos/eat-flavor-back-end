@@ -20,7 +20,37 @@
 
 ## :page_with_curl: Sobre
 
-Este repositório contém o back-end do site de delivery da EatFlavor. A api foi feita com [Node](''), ultilizando o framework [Express]() e banco de dados [MongoDb](). São 3 tabelas do banco de dados para usuários, produtos e vendas. A dois tipos de usuário, administrador e cliente, o cliente tem permissão para listar produtos, listar vendas e atualizar o status desta, enquanto o administrador também tem permissão para adicionar produtos. O sistema de autenticação foi desenvolvido com [JWT](https://jwt.io/) para aferir as permissões necessárias.
+Este repositório contém o back-end do site de delivery da EatFlavor. A api foi feita com [Node](https://nodejs.org/en/), ultilizando o framework [Express](https://expressjs.com/pt-br/) e banco de dados [MongoDb](https://www.mongodb.com/). 
+São 3 tabelas do banco de dados para usuários, produtos e vendas. Há dois tipos de usuário, administrador e cliente, o cliente tem permissão para listar produtos, listar vendas e atualizar o status desta, enquanto o administrador também tem permissão para adicionar produtos. O sistema de autenticação foi desenvolvido com [JWT](https://jwt.io/) para aferir as permissões necessárias.
+Foi utilizado o modelo de arquiterura MSC para a comunicação com o banco de dados, validações e comunicação com o usuário. Os models e os services foram feitos com TDD (Test Driven Development) utlizando [Mocha](https://mochajs.org/), [Chai](https://www.chaijs.com/) e [Sinon](https://sinonjs.org/) e testando cada camada individualmente.
+
+## 🔧 Recursos
+
+- Listar produtos
+- Listar produto por id
+- Criar produto
+- Listar vendas
+- Listar venda por id
+- Criar venda
+- Atualizar venda
+- Registrar usuário
+- Validar usuário
+- Validar token
+
+## :hammer: Tecnologias
+
+Esse projeto foi desenvolvido com:
+
+- [Expo](https://expo.io/)
+- [React Native](https://reactnative.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [React Navigation](https://reactnavigation.org/)
+- [React Native Gesture Handler](https://kmagiera.github.io/react-native-gesture-handler/)
+- [React Native Svg](https://github.com/react-native-svg/react-native-svg)
+- [Redux](https://redux.js.org/)
+- [Styled Components](https://styled-components.com/)
+- [@expo/vector-icons](https://docs.expo.io/guides/icons/)
+- [ESLint](https://eslint.org/)
 
 # Instalação
 
