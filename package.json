@@ -8,7 +8,8 @@
     "test": "mocha -r ts-node/register src/**/*$NAME*.test.ts",
     "dev": "ts-node-dev -r tsconfig-paths/register --respawn --ignore-watch node_modules --no-notify src/api/server.ts",
     "deploy": "git add . && git commit -m Heroku && git push",
-    "start": "node dist/api/server.js"
+    "start": "node dist/api/server.js",
+    "readme": "git add . && git commit -m Readme && git push"
   },
   "keywords": [],
   "author": "",
