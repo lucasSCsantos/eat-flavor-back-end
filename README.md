@@ -41,16 +41,17 @@ Foi utilizado o modelo de arquiterura MSC para a comunicação com o banco de da
 
 Esse projeto foi desenvolvido com:
 
-- [Expo](https://expo.io/)
-- [React Native](https://reactnative.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
-- [React Navigation](https://reactnavigation.org/)
-- [React Native Gesture Handler](https://kmagiera.github.io/react-native-gesture-handler/)
-- [React Native Svg](https://github.com/react-native-svg/react-native-svg)
-- [Redux](https://redux.js.org/)
-- [Styled Components](https://styled-components.com/)
-- [@expo/vector-icons](https://docs.expo.io/guides/icons/)
-- [ESLint](https://eslint.org/)
+- [Express](https://reactnavigation.org/)
+- [Node](https://kmagiera.github.io/react-native-gesture-handler/)
+- [MongoDB](https://github.com/react-native-svg/react-native-svg)
+- [JWT](https://redux.js.org/)
+
+Testes
+
+- [Mocha](https://styled-components.com/)
+- [Chai](https://docs.expo.io/guides/icons/)
+- [Sinon](https://eslint.org/)
 
 # Instalação
 
