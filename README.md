@@ -67,7 +67,7 @@ Testes
   $ yarn start ou npm start
 ```
 
-## End Points
+# End Points
 
 ### Produtos
 #### Listar todos os produtos:
