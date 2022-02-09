@@ -98,6 +98,7 @@ https://eatflavor-bd.herokuapp.com/products/:id
 ```
 ```json
 {
+	"_id": "123456789123",
   "name": "Serradura",
 	"description": "Uma sobremesa cremosa e saborosa, misturada com o crocante da bolacha triturada",
   "price": 6.99,
@@ -114,7 +115,6 @@ https://eatflavor-bd.herokuapp.com/products
 A estrutura para adicionar um produto deve ser essa:
 ```json
 {
-	"_id": "123456789123",
 	"name": "Serradura",
 	"description": "Uma sobremesa cremosa e saborosa, misturada com o crocante da bolacha triturada",
 	"price": 6.99,
@@ -123,6 +123,17 @@ A estrutura para adicionar um produto deve ser essa:
 	"type": "Fria"
 },
 ```
+O retorno deve ser:
+```json
+{
+	"_id": "123456789123",
+	"name": "Serradura",
+	"description": "Uma sobremesa cremosa e saborosa, misturada com o crocante da bolacha triturada",
+	"price": 6.99,
+	"url_image": "https://imagem.sobremesa/bonita.png",
+	"category": "dessert",
+	"type": "Fria"
+},
 ### Produtos
 #### Listar todas as vendas:
 
@@ -133,6 +144,7 @@ https://eatflavor-bd.herokuapp.com/sales
 {
 	"sales": [
 		{
+			"_id": "123456789125",
 			"user_id": "Arroz",
 			"address": "Rua feia",
 			"total_price": 20.99,
@@ -140,6 +152,7 @@ https://eatflavor-bd.herokuapp.com/sales
 			"status": "pending",
 			"products": [
 				{
+					"_id": "123456789123",
 					"name": "Arroz",
 					"description": "Um arroz sequinho, delicioso, recheado com pato e farinheira",
 					"price": 10.99,
@@ -161,6 +174,7 @@ https://eatflavor-bd.herokuapp.com/sales/:id
 ```
 ```json
 {
+	"_id": "123456789123",
 	"user_id": "Arroz",
 	"address": "Rua feia",
 	"total_price": 20.99,
@@ -179,12 +193,33 @@ https://eatflavor-bd.herokuapp.com/sales/:id
 	]
 },
 ```
-#### Adicionar um time:
+#### Adicionar uma venda:
 
 ```bash
 https://eatflavor-bd.herokuapp.com/sales
 ```
 A estrutura para adicionar uma venda deve ser essa:
+```json
+{
+	"user_id": "Arroz",
+	"address": "Rua feia",
+	"total_price": 20.99,
+	"sale_date": "Mon Feb 07 2022 20:35:16 GMT-0300",
+	"status": "pending",
+	"products": [
+		{
+			"name": "Arroz",
+			"description": "Um arroz sequinho, delicioso, recheado com pato e farinheira",
+			"price": 10.99,
+			"url_image": "https://imagem.arroz/pato.jpeg",
+			"category": "food",
+			"type": "Carne Branca"
+		},
+		...
+	]
+},
+```
+O retorno deve ser:
 ```json
 {
 	"_id": "123456789123",
@@ -206,101 +241,47 @@ A estrutura para adicionar uma venda deve ser essa:
 	]
 },
 ```
-### Jogadores
-#### Acessar todos os jogadores:
+### Usuários
+#### Registrar usuário:
 
 ```bash
-https://eatflavor-bd.herokuapp.com//players
+https://eatflavor-bd.herokuapp.com/register
 ```
-```json
-[
-  { 
-    "id": 1,
-    "team": "PSG",
-    "rating": 84,
-    "city": "Paris",
-    "country": "France",
-    "league": "Ligue 1",
-    "players": [],
-  },
-  ...
-]
-```
-#### Acessar apenas um jogador:
-
-```bash
-https://eatflavor-bd.herokuapp.com//players/:id
-```
+A estrutura para adicionar um usuário deve ser essa:
 ```json
 {
-   "id": 1,
-   "player": "Neymar",
-   "team": "PSG"
+	"name": "Ednaldo",
+	"email": "ednaldo@gmail.com",
+	"password": "senha_secreta_do_ednaldo"
 }
 ```
-#### Adicionar um jogador:
-
-```bash
-https://eatflavor-bd.herokuapp.com//players
-```
-A estrutura para adicionar um jogador deve ser essa:
+O retorno deve ser:
 ```json
 {
-   "player": "Jota",
-   "team_id": 6 // Liverpool
+	"_id": "123456789123",
+	"name": "Ednaldo",
+	"email": "ednaldo@gmail.com",
+	"token": "eyJhbGciOiJIUzI1NIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFfsefscCFrD43ZXhwIjoxNjQ0MzY4NTQwfQ.jFr2oShUqNHY_vXSz3GDQVlki4urSYvzo"
 }
 ```
-#### Deletar um jogador:
+#### Logar com usuário:
 
 ```bash
-https://eatflavor-bd.herokuapp.com//players/:id
+https://eatflavor-bd.herokuapp.com/login
 ```
-### Cidades
-#### Acessar todas as cidades:
-
-```bash
-https://eatflavor-bd.herokuapp.com//cities
-```
-```json
-[
-		{
-			"id": 1,
-			"city": "Manchester",
-			"country": "England"
-		},
-		{
-			"id": 2,
-			"city": "Madrid",
-			"country": "Spain"
-		},
-		...
-]
-```
-#### Acessar apenas uma cidade:
-
-```bash
-https://eatflavor-bd.herokuapp.com//cities/:id
-```
+A estrutura para fazer login deve ser essa:
 ```json
 {
-		"id": 1,
-		"league": "Manchester",
-},
-```
-#### Adicionar uma cidade:
-
-```bash
-https://eatflavor-bd.herokuapp.com//cities
-```
-A estrutura para adicionar uma cidade deve ser essa:
-```json
-{
-		"city": "Leicester",
-		"country_id": 1 //Inglaterra
+	"name": "Ednaldo",
+	"email": "ednaldo@gmail.com",
+	"password": "senha_secreta_do_ednaldo"
 }
 ```
-#### Deletar uma cidade:
-
-```bash
-https://eatflavor-bd.herokuapp.com//cities/:id
+O retorno deve ser:
+```json
+{
+	"_id": "ednaldo@gmail.com",
+	"name": "Ednaldo",
+	"token": "eyJhbGciOiJIUzI1NIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFfsefscCFrD43ZXhwIjoxNjQ0MzY4NTQwfQ.jFr2oShUqNHY_vXSz3GDQVlki4urSYvzo"
+}
 ```
