@@ -61,10 +61,10 @@ Testes
   $ cd eat-flavor-back-end
   
   # Instale as dependencias:
-  $ yarn ou npm install
+  $ yarn
   
   # Inicie o app:
-  $ yarn start ou npm start
+  $ yarn start
 ```
 
 # ⛓ End Points
