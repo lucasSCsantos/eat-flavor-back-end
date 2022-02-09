@@ -82,12 +82,12 @@ Testes
 > 	"name": "Serradura",
 >		"description": "Uma sobremesa cremosa e saborosa, misturada com o crocante da bolacha triturada",
 >  	"price": 6.99,
->		"url_image": "https://saboreiaavida.nestle.pt/sites/default/files/styles/receita_card_620x560/public/pictures/ea56688d-2686-11e6-8943-d4ae52b7884c.jpeg?itok=wvgxZgPt",
+>		"url_image": "https://imagem.sobremesa/bonita.png",
 >		"category": "dessert",
 >		"type": "Fria"
 >	},
 >...
-]
+>]
 >}
 >```
 >#### Acessar um produto pelo id:
@@ -100,7 +100,7 @@ Testes
 > "name": "Serradura",
 >	"description": "Uma sobremesa cremosa e saborosa, misturada com o crocante da bolacha triturada",
 >  "price": 6.99,
->	"url_image": "https://saboreiaavida.nestle.pt/sites/default/files/styles/receita_card_620x560/public/pictures/ea56688d-2686-11e6-8943-d4ae52b7884c.jpeg?itok=wvgxZgPt",
+>	"url_image": "https://imagem.sobremesa/bonita.png",
 >	"category": "dessert",
 >	"type": "Fria"
 >}
