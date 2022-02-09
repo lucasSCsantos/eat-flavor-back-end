@@ -143,7 +143,7 @@ https://eatflavor-bd.herokuapp.com/sales
 					"name": "Arroz",
 					"description": "Um arroz sequinho, delicioso, recheado com pato e farinheira",
 					"price": 10.99,
-					"url_image": "https://images.unsplash.com/photo-1541832676-9b763b0239abixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1020&q=80",
+					"url_image": "https://imagem.arroz/pato.jpeg",
 					"category": "food",
 					"type": "Carne Branca"
 				},
@@ -161,29 +161,49 @@ https://eatflavor-bd.herokuapp.com/sales/:id
 ```
 ```json
 {
-  "name": "Serradura",
-	"description": "Uma sobremesa cremosa e saborosa, misturada com o crocante da bolacha triturada",
-  "price": 6.99,
-	"url_image": "https://imagem.sobremesa/bonita.png",
-	"category": "dessert",
-	"type": "Fria"
-}
+	"user_id": "Arroz",
+	"address": "Rua feia",
+	"total_price": 20.99,
+	"sale_date": "Mon Feb 07 2022 20:35:16 GMT-0300",
+	"status": "pending",
+	"products": [
+		{
+			"name": "Arroz",
+			"description": "Um arroz sequinho, delicioso, recheado com pato e farinheira",
+			"price": 10.99,
+			"url_image": "https://imagem.arroz/pato.jpeg",
+			"category": "food",
+			"type": "Carne Branca"
+		},
+		...
+	]
+},
 ```
 #### Adicionar um time:
 
 ```bash
 https://eatflavor-bd.herokuapp.com/sales
 ```
-A estrutura para adicionar um produto deve ser essa:
+A estrutura para adicionar uma venda deve ser essa:
 ```json
 {
 	"_id": "123456789123",
-	"name": "Serradura",
-	"description": "Uma sobremesa cremosa e saborosa, misturada com o crocante da bolacha triturada",
-	"price": 6.99,
-	"url_image": "https://imagem.sobremesa/bonita.png",
-	"category": "dessert",
-	"type": "Fria"
+	"user_id": "Arroz",
+	"address": "Rua feia",
+	"total_price": 20.99,
+	"sale_date": "Mon Feb 07 2022 20:35:16 GMT-0300",
+	"status": "pending",
+	"products": [
+		{
+			"name": "Arroz",
+			"description": "Um arroz sequinho, delicioso, recheado com pato e farinheira",
+			"price": 10.99,
+			"url_image": "https://imagem.arroz/pato.jpeg",
+			"category": "food",
+			"type": "Carne Branca"
+		},
+		...
+	]
 },
 ```
 ### Jogadores
