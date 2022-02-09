@@ -1,3 +1,7 @@
+<h1 align="center">
+  <img alt="Logo" src="https://i.imgur.com/lY7ZWok.png" width="250px" />
+</h1>
+
 # Instalação
 
 1. Clone o repositório
@@ -16,11 +20,11 @@ npm start
 
 ## End Points
 
-### Times
->#### Acessar todos os times:
+### Produtos
+>#### Listar todos os produtos:
 >
 >```bash
->http://localhost:3000/teams
+>https://eatflavor-bd.herokuapp.com/products
 >```
 >```json
 >[
@@ -36,7 +40,7 @@ npm start
 >   ...
 > ]
 >```
->#### Acessar apenas um time:
+>#### Acessar um produto pelo id:
 >
 >```bash
 >http://localhost:3000/teams/:id
