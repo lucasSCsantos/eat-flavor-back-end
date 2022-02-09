@@ -99,7 +99,7 @@ Testes
 >{
 > "name": "Serradura",
 >	"description": "Uma sobremesa cremosa e saborosa, misturada com o crocante da bolacha triturada",
->  "price": 6.99,
+> "price": 6.99,
 >	"url_image": "https://imagem.sobremesa/bonita.png",
 >	"category": "dessert",
 >	"type": "Fria"
