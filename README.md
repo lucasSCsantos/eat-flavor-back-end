@@ -20,7 +20,7 @@
 
 ## :page_with_curl: Sobre
 
-Este repositório contém o back-end do site de delivery da EatFlavor. A api foi feita com [Node](''), ultilizando o framework [Express]() e banco de dados [MongoDb](). São 3 tabelas do banco de dados para usuários, produtos e vendas. A dois tipos de usuário, administrador e cliente, o cliente tem permissão para listar produtos, listar vendas e atualizar o status desta, enquanto o administrador também tem permissão para adicionar produtos. O sistema de autenticação foi desenvolvido com [JWT]("https://jwt.io/") para aferir as permissões necessárias.
+Este repositório contém o back-end do site de delivery da EatFlavor. A api foi feita com [Node](''), ultilizando o framework [Express]() e banco de dados [MongoDb](). São 3 tabelas do banco de dados para usuários, produtos e vendas. A dois tipos de usuário, administrador e cliente, o cliente tem permissão para listar produtos, listar vendas e atualizar o status desta, enquanto o administrador também tem permissão para adicionar produtos. O sistema de autenticação foi desenvolvido com [JWT]("jwt.io") para aferir as permissões necessárias.
 
 # Instalação
 
