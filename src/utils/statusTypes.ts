@@ -1,0 +1,1 @@
+export default ['pending', 'preparing', 'sent', 'delivered'];
