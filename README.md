@@ -1,19 +1,19 @@
-<h1 align="center">
-  <img alt="Logo" src="https://i.imgur.com/lY7ZWok.png" width="250px" />
-</h1>
+<h1 align="center"
+  <img alt="Logo" src="https://i.imgur.com/lY7ZWok.png" width="250px" /
+</h1
 
-<p align="center">
-  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/lucasSCsantos/pokedexApp">
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/lucasSCsantos/pokedexApp">
-  <img alt="Stars" src="https://img.shields.io/github/stars/lucasSCsantos/pokedexApp">
-  <img alt="Repository Size" src="https://img.shields.io/github/repo-size/lucasSCsantos/pokedexApp">
-</p>
+<p align="center"
+  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/lucasSCsantos/pokedexApp"
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/lucasSCsantos/pokedexApp"
+  <img alt="Stars" src="https://img.shields.io/github/stars/lucasSCsantos/pokedexApp"
+  <img alt="Repository Size" src="https://img.shields.io/github/repo-size/lucasSCsantos/pokedexApp"
+</p
 
-<h3 align="center">
+<h3 align="center"
   A api está hospedada no Heroku e pode ser acessada através da url: 
-	<br/>
+	<br/
 	"https://eatflavor-bd.herokuapp.com/"
-</h3>
+</h3
 
 ## :page_with_curl: Sobre
 
@@ -70,201 +70,201 @@ Testes
 ## End Points
 
 ### Produtos
->#### Listar todos os produtos:
->
->```bash
->https://eatflavor-bd.herokuapp.com/products
->```
->```json
->{
->	"products": [
->		{
-> 		"name": "Serradura",
->			"description": "Uma sobremesa cremosa e saborosa, misturada com o crocante da bolacha triturada",
->  		"price": 6.99,
->			"url_image": "https://imagem.sobremesa/bonita.png",
->			"category": "dessert",
->			"type": "Fria"
->		},
->		...
->	]
->}
->```
->#### Acessar um produto pelo id:
->
->```bash
->https://eatflavor-bd.herokuapp.com//products/:id
->```
->```json
->{
-> "name": "Serradura",
->	"description": "Uma sobremesa cremosa e saborosa, misturada com o crocante da bolacha triturada",
-> "price": 6.99,
->	"url_image": "https://imagem.sobremesa/bonita.png",
->	"category": "dessert",
->	"type": "Fria"
->}
->```
->#### Adicionar um time:
->
->```bash
->https://eatflavor-bd.herokuapp.com//products
->```
->A estrutura para adicionar um time deve ser essa:
->```json
->{
->   "team": "Lazio",
->   "team_rating": 80,
->		"city_id": 5, //Roma
->   "country_id": 4, //Itália
->   "league_id": 4 //Calcio A
->}
->```
+#### Listar todos os produtos:
+
+```bash
+https://eatflavor-bd.herokuapp.com/products
+```
+```json
+{
+	"products": [
+		{
+ 		"name": "Serradura",
+			"description": "Uma sobremesa cremosa e saborosa, misturada com o crocante da bolacha triturada",
+  		"price": 6.99,
+			"url_image": "https://imagem.sobremesa/bonita.png",
+			"category": "dessert",
+			"type": "Fria"
+		},
+		...
+	]
+}
+```
+#### Acessar um produto pelo id:
+
+```bash
+https://eatflavor-bd.herokuapp.com//products/:id
+```
+```json
+{
+ "name": "Serradura",
+	"description": "Uma sobremesa cremosa e saborosa, misturada com o crocante da bolacha triturada",
+ "price": 6.99,
+	"url_image": "https://imagem.sobremesa/bonita.png",
+	"category": "dessert",
+	"type": "Fria"
+}
+```
+#### Adicionar um time:
+
+```bash
+https://eatflavor-bd.herokuapp.com//products
+```
+A estrutura para adicionar um time deve ser essa:
+```json
+{
+   "team": "Lazio",
+   "team_rating": 80,
+		"city_id": 5, //Roma
+   "country_id": 4, //Itália
+   "league_id": 4 //Calcio A
+}
+```
 ### Ligas
->#### Acessar todas as ligas:
->
->```bash
->https://eatflavor-bd.herokuapp.com//leagues
->```
->```json
->[
->		{
->			"id": 1,
->			"league": "Premier League",
->			"country": "England"
->		},
->		{
->			"id": 2,
->			"league": "La Liga",
->			"country": "Spain"
->		},
->		...
->]
->```
->#### Acessar apenas uma liga:
->
->```bash
->https://eatflavor-bd.herokuapp.com//leagues/:id
->```
->```json
->{
->		"id": 1,
->		"league": "Premier League",
->		"country": "England"
->},
->```
->#### Adicionar uma liga:
->
->```bash
->https://eatflavor-bd.herokuapp.com//leagues
->```
->A estrutura para adicionar uma liga deve ser essa:
->```json
->{
->		"league": "2. Bundesliga",
->		"country_id": 5 //Alemanha
->}
->```
->#### Deletar uma liga:
->
->```bash
->https://eatflavor-bd.herokuapp.com//leagues/:id
->```
+#### Acessar todas as ligas:
+
+```bash
+https://eatflavor-bd.herokuapp.com//leagues
+```
+```json
+[
+		{
+			"id": 1,
+			"league": "Premier League",
+			"country": "England"
+		},
+		{
+			"id": 2,
+			"league": "La Liga",
+			"country": "Spain"
+		},
+		...
+]
+```
+#### Acessar apenas uma liga:
+
+```bash
+https://eatflavor-bd.herokuapp.com//leagues/:id
+```
+```json
+{
+		"id": 1,
+		"league": "Premier League",
+		"country": "England"
+},
+```
+#### Adicionar uma liga:
+
+```bash
+https://eatflavor-bd.herokuapp.com//leagues
+```
+A estrutura para adicionar uma liga deve ser essa:
+```json
+{
+		"league": "2. Bundesliga",
+		"country_id": 5 //Alemanha
+}
+```
+#### Deletar uma liga:
+
+```bash
+https://eatflavor-bd.herokuapp.com//leagues/:id
+```
 ### Jogadores
->#### Acessar todos os jogadores:
->
->```bash
->https://eatflavor-bd.herokuapp.com//players
->```
->```json
->[
->  { 
->    "id": 1,
->    "team": "PSG",
->    "rating": 84,
->    "city": "Paris",
->    "country": "France",
->    "league": "Ligue 1",
->    "players": [],
->  },
->  ...
->]
->```
->#### Acessar apenas um jogador:
->
->```bash
->https://eatflavor-bd.herokuapp.com//players/:id
->```
->```json
->{
->   "id": 1,
->   "player": "Neymar",
->   "team": "PSG"
->}
->```
->#### Adicionar um jogador:
->
->```bash
->https://eatflavor-bd.herokuapp.com//players
->```
->A estrutura para adicionar um jogador deve ser essa:
->```json
->{
->   "player": "Jota",
->   "team_id": 6 // Liverpool
->}
->```
->#### Deletar um jogador:
->
->```bash
->https://eatflavor-bd.herokuapp.com//players/:id
->```
+#### Acessar todos os jogadores:
+
+```bash
+https://eatflavor-bd.herokuapp.com//players
+```
+```json
+[
+  { 
+    "id": 1,
+    "team": "PSG",
+    "rating": 84,
+    "city": "Paris",
+    "country": "France",
+    "league": "Ligue 1",
+    "players": [],
+  },
+  ...
+]
+```
+#### Acessar apenas um jogador:
+
+```bash
+https://eatflavor-bd.herokuapp.com//players/:id
+```
+```json
+{
+   "id": 1,
+   "player": "Neymar",
+   "team": "PSG"
+}
+```
+#### Adicionar um jogador:
+
+```bash
+https://eatflavor-bd.herokuapp.com//players
+```
+A estrutura para adicionar um jogador deve ser essa:
+```json
+{
+   "player": "Jota",
+   "team_id": 6 // Liverpool
+}
+```
+#### Deletar um jogador:
+
+```bash
+https://eatflavor-bd.herokuapp.com//players/:id
+```
 ### Cidades
->#### Acessar todas as cidades:
->
->```bash
->https://eatflavor-bd.herokuapp.com//cities
->```
->```json
->[
->		{
->			"id": 1,
->			"city": "Manchester",
->			"country": "England"
->		},
->		{
->			"id": 2,
->			"city": "Madrid",
->			"country": "Spain"
->		},
->		...
->]
->```
->#### Acessar apenas uma cidade:
->
->```bash
->https://eatflavor-bd.herokuapp.com//cities/:id
->```
->```json
->{
->		"id": 1,
->		"league": "Manchester",
->},
->```
->#### Adicionar uma cidade:
->
->```bash
->https://eatflavor-bd.herokuapp.com//cities
->```
->A estrutura para adicionar uma cidade deve ser essa:
->```json
->{
->		"city": "Leicester",
->		"country_id": 1 //Inglaterra
->}
->```
->#### Deletar uma cidade:
->
->```bash
->https://eatflavor-bd.herokuapp.com//cities/:id
->```
+#### Acessar todas as cidades:
+
+```bash
+https://eatflavor-bd.herokuapp.com//cities
+```
+```json
+[
+		{
+			"id": 1,
+			"city": "Manchester",
+			"country": "England"
+		},
+		{
+			"id": 2,
+			"city": "Madrid",
+			"country": "Spain"
+		},
+		...
+]
+```
+#### Acessar apenas uma cidade:
+
+```bash
+https://eatflavor-bd.herokuapp.com//cities/:id
+```
+```json
+{
+		"id": 1,
+		"league": "Manchester",
+},
+```
+#### Adicionar uma cidade:
+
+```bash
+https://eatflavor-bd.herokuapp.com//cities
+```
+A estrutura para adicionar uma cidade deve ser essa:
+```json
+{
+		"city": "Leicester",
+		"country_id": 1 //Inglaterra
+}
+```
+#### Deletar uma cidade:
+
+```bash
+https://eatflavor-bd.herokuapp.com//cities/:id
+```
