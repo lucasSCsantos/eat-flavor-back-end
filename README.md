@@ -10,13 +10,17 @@
 </p>
 
 <p align="center">
-  <a href="#page_with_curl-about">About</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#hammer-technologies">Technologies</a>
+  <a href="#page_with_curl-about">Sobre</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#hammer-technologies">Tecnologias</a>
   &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#books-requirements">Requirements</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#books-requirements">Instalação</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#rocket-getting-started">Getting started</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#thought_balloon-inspiration">Inspiration</a>
 </p>
+
+## :page_with_curl: Sobre
+
+Este repositório contém o back-end do site de delivery da EatFlavor. A api foi feita com [Node](''), ultilizando o framework [Express]() e banco de dados [MongoDb](). São 3 tabelas do banco de dados para usuários, produtos e vendas. A dois tipos de usuário, administrador e cliente, o cliente tem permissão para listar produtos, listar vendas e atualizar o status desta, enquanto o administrador também tem permissão para adicionar produtos. O sistema de autenticação foi desenvolvido com [JWT]('https://auth0.com/resources/ebooks/jwt-handbook?utm_source=google&utm_medium=cpc&utm_term=-g-jwt&pm=true&utm_campaign=latam-eng-brazil-generic-authentication&gclid=Cj0KCQiAxoiQBhCRARIsAPsvo-y7PCpFbKibqsDi8ETlIteb6yjhk1z3Y4HEilvJfKwiOcf-00NLB-saAl7LEALw_wcB') para aferir as permissões necessárias.
 
 # Instalação
 
