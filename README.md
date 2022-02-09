@@ -3,10 +3,10 @@
 </h1>
 
 <p align="center">
-  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/lucasSCsantos/pokedexApp">
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/lucasSCsantos/pokedexApp">
-  <img alt="Stars" src="https://img.shields.io/github/stars/lucasSCsantos/pokedexApp">
-  <img alt="Repository Size" src="https://img.shields.io/github/repo-size/lucasSCsantos/pokedexApp">
+  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/lucasSCsantos/eat-flavor-back-end">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/lucasSCsantos/eat-flavor-back-end">
+  <img alt="Stars" src="https://img.shields.io/github/stars/lucasSCsantos/eat-flavor-back-end">
+  <img alt="Repository Size" src="https://img.shields.io/github/repo-size/lucasSCsantos/eat-flavor-back-end">
 </p>
 
 <h3 align="center">
