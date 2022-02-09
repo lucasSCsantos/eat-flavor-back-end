@@ -57,7 +57,7 @@ Testes
   # Clone o repositório:
   $ https://github.com/lucasSCsantos/eat-flavor-back-end
 
-  # Entrar no diretório:
+  # Entre no diretório:
   $ cd eat-flavor-back-end
   
   # Instale as dependencias:
@@ -76,45 +76,39 @@ Testes
 >https://eatflavor-bd.herokuapp.com/products
 >```
 >```json
->[
->   { 
->     "id": 1,
->     "team": "PSG",
->     "rating": 84,
->     "city": "Paris",
->     "country": "France",
->     "league": "Ligue 1",
->     "players": [],
->   },
->   ...
-> ]
+>{
+> "products": [
+>	{
+> 	"name": "Serradura",
+>		"description": "Uma sobremesa cremosa e saborosa, misturada com o crocante da bolacha triturada",
+>  	"price": 6.99,
+>		"url_image": "https://saboreiaavida.nestle.pt/sites/default/files/styles/receita_card_620x560/public/pictures/ea56688d-2686-11e6-8943-d4ae52b7884c.jpeg?itok=wvgxZgPt",
+>		"category": "dessert",
+>		"type": "Fria"
+>	},
+>...
+]
+>}
 >```
 >#### Acessar um produto pelo id:
 >
 >```bash
->http://localhost:3000/teams/:id
+>https://eatflavor-bd.herokuapp.com//products/:id
 >```
 >```json
->  { 
->    "id": 1,
->    "team": "PSG",
->    "rating": 84,
->    "city": "Paris",
->    "country": "France",
->    "league": "Ligue 1",
->    "players": [
->       {
->         "id": 1,
->         "player": "Neymar"
->       },
->     ...
->    ],
->  }
+>{
+> "name": "Serradura",
+>	"description": "Uma sobremesa cremosa e saborosa, misturada com o crocante da bolacha triturada",
+>  "price": 6.99,
+>	"url_image": "https://saboreiaavida.nestle.pt/sites/default/files/styles/receita_card_620x560/public/pictures/ea56688d-2686-11e6-8943-d4ae52b7884c.jpeg?itok=wvgxZgPt",
+>	"category": "dessert",
+>	"type": "Fria"
+>}
 >```
 >#### Adicionar um time:
 >
 >```bash
->http://localhost:3000/teams
+>https://eatflavor-bd.herokuapp.com//products
 >```
 >A estrutura para adicionar um time deve ser essa:
 >```json
@@ -126,16 +120,11 @@ Testes
 >   "league_id": 4 //Calcio A
 >}
 >```
->#### Deletar um time:
->
->```bash
->http://localhost:3000/teams/:id
->```
 ### Ligas
 >#### Acessar todas as ligas:
 >
 >```bash
->http://localhost:3000/leagues
+>https://eatflavor-bd.herokuapp.com//leagues
 >```
 >```json
 >[
@@ -155,7 +144,7 @@ Testes
 >#### Acessar apenas uma liga:
 >
 >```bash
->http://localhost:3000/leagues/:id
+>https://eatflavor-bd.herokuapp.com//leagues/:id
 >```
 >```json
 >{
@@ -167,7 +156,7 @@ Testes
 >#### Adicionar uma liga:
 >
 >```bash
->http://localhost:3000/leagues
+>https://eatflavor-bd.herokuapp.com//leagues
 >```
 >A estrutura para adicionar uma liga deve ser essa:
 >```json
@@ -179,13 +168,13 @@ Testes
 >#### Deletar uma liga:
 >
 >```bash
->http://localhost:3000/leagues/:id
+>https://eatflavor-bd.herokuapp.com//leagues/:id
 >```
 ### Jogadores
 >#### Acessar todos os jogadores:
 >
 >```bash
->http://localhost:3000/players
+>https://eatflavor-bd.herokuapp.com//players
 >```
 >```json
 >[
@@ -204,7 +193,7 @@ Testes
 >#### Acessar apenas um jogador:
 >
 >```bash
->http://localhost:3000/players/:id
+>https://eatflavor-bd.herokuapp.com//players/:id
 >```
 >```json
 >{
@@ -216,7 +205,7 @@ Testes
 >#### Adicionar um jogador:
 >
 >```bash
->http://localhost:3000/players
+>https://eatflavor-bd.herokuapp.com//players
 >```
 >A estrutura para adicionar um jogador deve ser essa:
 >```json
@@ -228,13 +217,13 @@ Testes
 >#### Deletar um jogador:
 >
 >```bash
->http://localhost:3000/players/:id
+>https://eatflavor-bd.herokuapp.com//players/:id
 >```
 ### Cidades
 >#### Acessar todas as cidades:
 >
 >```bash
->http://localhost:3000/cities
+>https://eatflavor-bd.herokuapp.com//cities
 >```
 >```json
 >[
@@ -254,7 +243,7 @@ Testes
 >#### Acessar apenas uma cidade:
 >
 >```bash
->http://localhost:3000/cities/:id
+>https://eatflavor-bd.herokuapp.com//cities/:id
 >```
 >```json
 >{
@@ -265,7 +254,7 @@ Testes
 >#### Adicionar uma cidade:
 >
 >```bash
->http://localhost:3000/cities
+>https://eatflavor-bd.herokuapp.com//cities
 >```
 >A estrutura para adicionar uma cidade deve ser essa:
 >```json
@@ -277,5 +266,5 @@ Testes
 >#### Deletar uma cidade:
 >
 >```bash
->http://localhost:3000/cities/:id
+>https://eatflavor-bd.herokuapp.com//cities/:id
 >```
