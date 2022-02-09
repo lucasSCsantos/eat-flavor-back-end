@@ -51,7 +51,7 @@ Testes
 - [Chai](https://docs.expo.io/guides/icons/)
 - [Sinon](https://eslint.org/)
 
-# Instalação
+# :arrow_down: Instalação
 
 ```bash
   # Clone o repositório:
@@ -67,7 +67,7 @@ Testes
   $ yarn start ou npm start
 ```
 
-# End Points
+# ⛓ End Points
 
 ### Produtos
 #### Listar todos os produtos:
