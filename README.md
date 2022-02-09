@@ -53,18 +53,18 @@ Testes
 
 # Instalação
 
-1. Clone o repositório
+```bash
+  # Clone o repositório:
+  $ https://github.com/lucasSCsantos/eat-flavor-back-end
 
-2. Instale as dependencias
-
-```javascript
-npm install
-```
-
-3. Rode o app
-
-```javascript
-npm start
+  # Entrar no diretório:
+  $ cd eat-flavor-back-end
+  
+  # Instale as dependencias:
+  $ yarn ou npm install
+  
+  # Inicie o app:
+  $ yarn start ou npm start
 ```
 
 ## End Points
