@@ -25,7 +25,8 @@ São 3 tabelas do banco de dados para usuários, produtos e vendas. Há dois tip
 Foi utilizado o modelo de arquiterura MSC para a comunicação com o banco de dados, validações e comunicação com o usuário. Os models e os services foram feitos com TDD (Test Driven Development) utlizando [Mocha](https://mochajs.org/), [Chai](https://www.chaijs.com/) e [Sinon](https://sinonjs.org/) e testando cada camada individualmente.
 
 <h3 align="center">
-  A api está hospedada no Heroku e pode ser acessada através da url: "https://eatflavor-bd.herokuapp.com/"
+  A api está hospedada no Heroku e pode ser acessada através da url: 
+	"https://eatflavor-bd.herokuapp.com/"
 </h3>
 
 ## 🔧 Recursos
