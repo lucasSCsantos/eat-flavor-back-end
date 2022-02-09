@@ -9,14 +9,10 @@
   <img alt="Repository Size" src="https://img.shields.io/github/repo-size/lucasSCsantos/pokedexApp">
 </p>
 
-<p align="center">
-  <a href="#page_with_curl-about">Sobre</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#hammer-technologies">Tecnologias</a>
-  &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#books-requirements">Instalação</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#rocket-getting-started">Getting started</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#thought_balloon-inspiration">Inspiration</a>
-</p>
+<h1 align="center">
+  A api está hospedada no Heroku e pode ser acessada através da url: 
+	"https://eatflavor-bd.herokuapp.com/"
+</h1>
 
 ## :page_with_curl: Sobre
 
@@ -24,10 +20,6 @@ Este repositório contém o back-end do site de delivery da EatFlavor. A api foi
 São 3 tabelas do banco de dados para usuários, produtos e vendas. Há dois tipos de usuário, administrador e cliente, o cliente tem permissão para listar produtos, listar vendas e atualizar o status desta, enquanto o administrador também tem permissão para adicionar produtos. O sistema de autenticação foi desenvolvido com [JWT](https://jwt.io/) para aferir as permissões necessárias.
 Foi utilizado o modelo de arquiterura MSC para a comunicação com o banco de dados, validações e comunicação com o usuário. Os models e os services foram feitos com TDD (Test Driven Development) utlizando [Mocha](https://mochajs.org/), [Chai](https://www.chaijs.com/) e [Sinon](https://sinonjs.org/) e testando cada camada individualmente.
 
-<h1 align="center">
-  A api está hospedada no Heroku e pode ser acessada através da url: 
-	"https://eatflavor-bd.herokuapp.com/"
-</h1>
 
 ## 🔧 Recursos
 
