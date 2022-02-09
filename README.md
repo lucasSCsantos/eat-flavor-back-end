@@ -12,7 +12,7 @@
 <h3 align="center">
   A api está hospedada no Heroku e pode ser acessada através da url: 
 	<br/>
-	"https://eatflavor-bd.herokuapp.com/">
+	"https://eatflavor-bd.herokuapp.com/"
 </h3>
 
 ## :page_with_curl: Sobre
@@ -40,16 +40,16 @@ Foi utilizado o modelo de arquiterura MSC para a comunicação com o banco de da
 Esse projeto foi desenvolvido com:
 
 - [TypeScript](https://www.typescriptlang.org/)
-- [Express](https://reactnavigation.org/)
-- [Node](https://kmagiera.github.io/react-native-gesture-handler/)
-- [MongoDB](https://github.com/react-native-svg/react-native-svg)
-- [JWT](https://redux.js.org/)
+- [Express](https://expressjs.com/pt-br/)
+- [Node](https://nodejs.org/en/)
+- [MongoDB](https://www.mongodb.com/)
+- [JWT](https://jwt.io/)
 
 Testes
 
-- [Mocha](https://styled-components.com/)
-- [Chai](https://docs.expo.io/guides/icons/)
-- [Sinon](https://eslint.org/)
+- [Mocha](https://mochajs.org/)
+- [Chai](https://www.chaijs.com/)
+- [Sinon](https://sinonjs.org/)
 
 # :arrow_down: Instalação
 
@@ -134,6 +134,7 @@ O retorno deve ser:
 	"category": "dessert",
 	"type": "Fria"
 },
+```
 ### Produtos
 #### Listar todas as vendas:
 
